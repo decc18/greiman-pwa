@@ -25,12 +25,12 @@ export default defineConfig({
         start_url: '/greiman-pwa/',
         icons: [
           {
-            src: '/greiman-pwa/pwa-192x192.png',
+            src: 'pwa-192x192.png',
             sizes: '192x192',
             type: 'image/png'
           },
           {
-            src: '/greiman-pwa/pwa-512x512.png',
+            src: 'pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png'
           }
