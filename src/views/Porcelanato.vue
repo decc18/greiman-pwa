@@ -87,7 +87,7 @@
                   <i class="fa fa-phone me-2"></i>
                   CONTACTAR
                 </button>
-                <button @click="showCatalog" class="btn btn-primary btn-outline">
+                <button @click="showCatalog" class="btn btn-outline-primary btn-lg">
                   <i class="fa fa-download me-2"></i>
                   CATÁLOGO
                 </button>
