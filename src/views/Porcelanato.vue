@@ -101,7 +101,7 @@
         <div class="container-fluid px-0">
             <!-- Image Gallery -->
             <ImageGallery 
-            :images="galleryImages"
+            :images="galleryImagesWithBasePath"
             title="Colección SENSA"
             subtitle="Descubre la belleza y versatilidad del Porcelanato Calacatta Ossido en diferentes aplicaciones"
             />
@@ -240,19 +240,19 @@ export default {
       hasPlayedOnce: false, // Nuevo: controlar si ya se reprodujo una vez
       galleryImages: [
         {
-          src: '/images/porcelanato-ambiente.jpg',
+          src: 'porcelanato-ambiente.jpg',
           alt: 'Porcelanato Calacatta Ossido en ambiente',
           title: 'Aplicación en Interiores',
           description: 'El porcelanato Calacatta Ossido crea ambientes sofisticados y elegantes, perfectos para espacios de diseño contemporáneo.'
         },
         {
-          src: '/images/porcelanato-textura.jpg',
+          src: 'porcelanato-textura.jpg',
           alt: 'Textura detallada del porcelanato Calacatta Ossido',
           title: 'Detalle de Textura',
           description: 'Observa de cerca las venas naturales y la textura única que caracterizan al Calacatta Ossido de la colección SENSA.'
         },
         {
-          src: '/images/porcelanato-losa.jpg',
+          src: 'porcelanato-losa.jpg',
           alt: 'Losa individual del porcelanato Calacatta Ossido',
           title: 'Formato Individual',
           description: 'Cada pieza muestra la belleza natural del mármol Calacatta con la durabilidad del porcelanato de alta tecnología.'
@@ -263,11 +263,15 @@ export default {
   computed: {
     progressPercentage() {
       return this.duration > 0 ? (this.currentTime / this.duration) * 100 : 0
-    }
-  },
-  computed: {
+    },
     videoSrc() {
       return `${import.meta.env.BASE_URL}video/Nueva Colección Graiman - SENSA..mp4`
+    },
+    galleryImagesWithBasePath() {
+      return this.galleryImages.map(image => ({
+        ...image,
+        src: `${import.meta.env.BASE_URL}images/${image.src}`
+      }))
     }
   },
   methods: {
