@@ -104,7 +104,7 @@
       <div class="container">
         <div class="row">
           <div class="col-12 text-center mb-5">
-            <h2 class="section-title">Beneficios SpaViva</h2>
+            <h2 class="product-title">Beneficios SpaViva</h2>
             <p class="product-description">Transforma tu baño en una experiencia de bienestar</p>
           </div>
         </div>
@@ -145,7 +145,7 @@
       <div class="container">
         <div class="row">
           <div class="col-12 text-center mb-5">
-            <h2 class="section-title">Especificaciones Técnicas</h2>
+            <h2 class="product-title">Especificaciones Técnicas</h2>
           </div>
         </div>
         <div class="row">
@@ -364,7 +364,6 @@ export default {
 /* Estilos para el reproductor de video */
 .video-container {
   position: relative;
-  width: 100%;
   height: 300px;
   border-radius: 15px;
   overflow: hidden;

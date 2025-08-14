@@ -255,7 +255,7 @@ export default {
 }
 
 .carousel-subtitle {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   color: #666;
   font-family: 'Montserrat', serif;
   line-height: 1.4;
@@ -411,7 +411,7 @@ export default {
 }
 
 .slide-description {
-  font-size: 1.3rem;
+  font-size: 1.5rem;
   color: #666;
   line-height: 1.5;
   font-family: 'Montserrat', serif;
@@ -532,7 +532,7 @@ export default {
 }
 
 .modal-info p {
-  font-size: 1rem;
+  font-size: 1.5rem;
   color: #666;
   font-family: 'Montserrat', serif;
 }
@@ -637,14 +637,14 @@ export default {
   }
   
   .slide-title {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
     word-wrap: break-word;
     overflow-wrap: break-word;
     hyphens: auto;
   }
   
   .slide-description {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     line-height: 1.5;
     word-wrap: break-word;
     overflow-wrap: break-word;
@@ -658,7 +658,7 @@ export default {
   }
   
   .carousel-subtitle {
-    font-size: 1.1rem;
+    font-size: 1.5rem;
     line-height: 1.4;
     word-wrap: break-word;
     overflow-wrap: break-word;

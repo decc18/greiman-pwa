@@ -111,9 +111,9 @@
   
     
     <!-- Product Information Section -->
-    <section class="product-hero">
+    <section class="">
       <div class="product-info py-5">
-        <div class="row">
+        <div class="">
           <div class="col-12 text-center mb-5">
             <h2 class="product-title">CALACATTA OSSIDO</h2>
             <p class="product-description">
@@ -162,7 +162,7 @@
       <div class="container">
         <div class="row">
           <div class="col-12 text-center mb-5">
-            <h2 class="section-title">Especificaciones Técnicas</h2>
+            <h2 class="product-title">Especificaciones Técnicas</h2>
           </div>
         </div>
         <div class="row">
@@ -408,7 +408,7 @@ export default {
 /* Estilos para el reproductor de video */
 .video-container {
   position: relative;
-  width: 100%;
+  
   height: 300px;
   border-radius: 15px;
   overflow: hidden;
