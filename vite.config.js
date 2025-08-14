@@ -4,6 +4,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/greiman-pwa/', // Base path para GitHub Pages
   plugins: [
     vue(),
     VitePWA({
@@ -20,16 +21,16 @@ export default defineConfig({
         theme_color: '#008296',
         background_color: '#ffffff',
         display: 'standalone',
-        scope: '/',
-        start_url: '/',
+        scope: '/greiman-pwa/',
+        start_url: '/greiman-pwa/',
         icons: [
           {
-            src: 'pwa-192x192.png',
+            src: '/greiman-pwa/pwa-192x192.png',
             sizes: '192x192',
             type: 'image/png'
           },
           {
-            src: 'pwa-512x512.png',
+            src: '/greiman-pwa/pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png'
           }
