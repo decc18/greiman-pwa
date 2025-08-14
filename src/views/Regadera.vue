@@ -336,8 +336,8 @@ export default {
         container.addEventListener('touchstart', this.showVideoControls)
       }
       
-      // Ensure video starts automatically
-      video.loop = true
+      // Ensure video starts automatically - sin loop infinito
+      video.loop = false
       video.autoplay = true
       this.isMuted = false
       video.muted = false // Empezar con sonido la primera vez
@@ -361,6 +361,172 @@ export default {
 </script>
 
 <style scoped>
+/* Estilos para el reproductor de video */
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  border-radius: 15px;
+  overflow: hidden;
+  background: #000;
+}
+
+.video-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
+  padding: 20px 15px 15px;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.video-controls.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.video-controls-row {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.play-pause-btn {
+  background: rgba(255,255,255,0.9);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #333;
+  font-size: 16px;
+}
+
+.play-pause-btn:hover {
+  background: rgba(255,255,255,1);
+  transform: scale(1.1);
+}
+
+.mute-btn {
+  background: rgba(255,255,255,0.9);
+  border: none;
+  border-radius: 4px;
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  color: #333;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.mute-btn:hover {
+  background: rgba(255,255,255,1);
+}
+
+.time-display {
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  min-width: 80px;
+  text-align: right;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+}
+
+/* Progress Bar Styles - Asegurar que se vean correctamente */
+.progress-container {
+  flex: 1;
+  margin: 0 10px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background: rgba(255,255,255,0.3) !important;
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-bar:hover {
+  height: 8px;
+  transition: height 0.2s ease;
+}
+
+.progress {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color)) !important;
+  border-radius: 3px;
+  transition: width 0.1s ease;
+  position: relative;
+}
+
+.progress::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.progress-bar:hover .progress::after {
+  opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .video-container {
+    height: 250px;
+  }
+  
+  .video-controls {
+    padding: 15px 10px 10px;
+  }
+  
+  .video-controls-row {
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  
+  .play-pause-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 14px;
+  }
+  
+  .mute-btn {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+  
+  .time-display {
+    font-size: 12px;
+    min-width: 70px;
+  }
+  
+  .progress-bar {
+    height: 8px;
+  }
+  
+  .progress-bar:hover {
+    height: 10px;
+  }
+}
+
 /* Estilos específicos solo para Regadera */
 .benefits-section {
   background: var(--bg-color);

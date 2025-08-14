@@ -18,10 +18,11 @@
                   <video 
                     :src="porcelanatoVideoUrl"
                     muted
-                    loop
                     autoplay
                     class="card-video clickable-video"
                     @click="goToPorcelanato"
+                    @ended="onVideoEnded"
+                    ref="porcelanatoVideo"
                   ></video>
                 </div>
                 <div class="card-content">
@@ -38,10 +39,11 @@
                   <video 
                     :src="regaderaVideoUrl"
                     muted
-                    loop
                     autoplay
                     class="card-video clickable-video"
                     @click="goToRegadera"
+                    @ended="onVideoEnded"
+                    ref="regaderaVideo"
                   ></video>
                 </div>
                 <div class="card-content">
@@ -97,6 +99,10 @@ export default {
     },
     goToRegadera() {
       this.$router.push('/regadera')
+    },
+    onVideoEnded(event) {
+      // Mantener el video en el último frame después de reproducirse
+      event.target.currentTime = event.target.duration;
     }
   }
 }
