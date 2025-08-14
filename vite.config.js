@@ -10,8 +10,15 @@ export default defineConfig({
     VitePWA({
       registerType: 'autoUpdate',
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,jpg,jpeg,gif,pdf,mp4}'],
-        maximumFileSizeToCacheInBytes: 10 * 1024 * 1024, // 10 MB limit
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,jpg,jpeg,gif,pdf}'],
+        globIgnores: [
+          '**/node_modules/**/*',
+          '**/video/**/*', // Excluir videos del precaching
+          '**/*.mp4', // Excluir archivos MP4 específicamente
+        ],
+        maximumFileSizeToCacheInBytes: 15 * 1024 * 1024, // 15 MB limit
+        skipWaiting: true,
+        clientsClaim: true,
       },
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
       manifest: {
@@ -39,8 +46,12 @@ export default defineConfig({
     })
   ],
   build: {
+    assetsInlineLimit: 0, // No inline any assets
     rollupOptions: {
       output: {
+        manualChunks: {
+          vendor: ['vue', 'vue-router'],
+        },
         assetFileNames: (assetInfo) => {
           const info = assetInfo.name.split('.');
           const extType = info[info.length - 1];
