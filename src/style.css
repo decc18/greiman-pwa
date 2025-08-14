@@ -1,0 +1,739 @@
+/* Estilos base para la PWA con integración Bootstrap */
+:root {
+  font-family: 'Montserrat', serif, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  color-scheme: light dark;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  
+  /* Variables de color personalizadas */
+  --primary-color: #008296;
+  --secondary-color: #0f1e2c;
+  --background-color: #ffffff;
+  --text-primary: #0f1e2c;
+  --text-secondary: #666;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  font-family: 'Montserrat', serif, inherit;
+}
+
+html {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+/* Reset para compatibilidad con Bootstrap */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  color: inherit;
+}
+
+h1 {
+  font-size: clamp(1.8em, 4vw, 3.5em);
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: clamp(1.5em, 3vw, 2.5em);
+  line-height: 1.2;
+}
+
+/* Botones personalizados que no interfieran con Bootstrap */
+.btn-custom {
+  border-radius: 12px;
+  border: none;
+  padding: 0.75em 1.5em;
+  font-size: 1em;
+  font-weight: 600;
+  font-family: inherit;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-custom:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 130, 150, 0.3);
+  color: white;
+  text-decoration: none;
+  filter: brightness(110%);
+}
+
+.btn-custom:active {
+  transform: translateY(0);
+}
+
+.btn-custom:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+.div-container {
+  overflow-x: hidden;
+  min-height: 100vh;
+  /* Removido max-height: 100vh para permitir scroll natural */
+}
+/* Cards personalizadas */
+.card-custom {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 130, 150, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 130, 150, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card-custom:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 130, 150, 0.2);
+  border-color: rgba(0, 130, 150, 0.2);
+}
+
+/* App container principal */
+#app {
+  min-height: 100vh;
+  width: 100%;
+}
+
+/* Scrollbar personalizada - aplicada globalmente */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 130, 150, 0.6);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 130, 150, 0.8);
+}
+
+/* Asegurar que todas las páginas y contenedores usen el scroll personalizado */
+/* Scrollbar personalizada - simplificada para evitar conflictos */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 130, 150, 0.6);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 130, 150, 0.8);
+}
+
+/* Estilos específicos para páginas - solo para asegurar que no haya override */
+body::-webkit-scrollbar,
+html::-webkit-scrollbar {
+  width: 8px !important;
+}
+
+body::-webkit-scrollbar-track,
+html::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1) !important;
+  border-radius: 4px !important;
+}
+
+body::-webkit-scrollbar-thumb,
+html::-webkit-scrollbar-thumb {
+  background: rgba(0, 130, 150, 0.6) !important;
+  border-radius: 4px !important;
+}
+
+body::-webkit-scrollbar-thumb:hover,
+html::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 130, 150, 0.8) !important;
+}
+
+/* Botones de productos - estilo redondeado como en Home */
+.product-actions .btn {
+  border-radius: 30px !important;
+  padding: 1.5rem 4rem !important;
+  font-weight: 600 !important;
+  font-size: 1.5rem !important;
+  transition: all 0.3s ease !important;
+  border: 2px solid transparent !important;
+  text-transform: none !important;
+  letter-spacing: 0.5px !important;
+  min-width: 250px !important;
+  flex: 1 !important;
+}
+
+.product-actions .btn-primary {
+  background: linear-gradient(135deg, var(--primary-color), #00a3bb) !important;
+  border: none !important;
+  color: white !important;
+}
+
+.product-actions .btn-primary:hover {
+  background: linear-gradient(135deg, #00a3bb, var(--secondary-color)) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(0, 130, 150, 0.4) !important;
+}
+
+.product-actions .btn-outline-primary {
+  background: transparent !important;
+  border: 2px solid var(--primary-color) !important;
+  color: var(--primary-color) !important;
+}
+
+.product-actions .btn-outline-primary:hover {
+  background: var(--primary-color) !important;
+  color: white !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 25px rgba(0, 130, 150, 0.4) !important;
+  border-color: var(--primary-color) !important;
+}
+
+.product-actions .btn i {
+  margin-right: 0.5rem !important;
+}
+
+/* Espaciado entre botones de producto */
+.product-actions {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-top: 2.5rem;
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .product-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1.5rem;
+  }
+  
+  .product-actions .btn {
+    margin-bottom: 0;
+    padding: 1.4rem 2.5rem !important;
+    font-size: 1.5rem !important;
+    min-width: 100% !important;
+    border-radius: 25px !important;
+  }
+}
+
+/* Estilos comunes para páginas */
+#home,
+#porcelanato-page,
+#regadera-page {
+  overflow-x: hidden;
+  /* Removido overflow-y: auto para usar el scroll natural del body */
+}
+
+/* Estilos comunes para páginas de productos */
+.product-hero {
+  background: var(--bg-color);
+  margin-top: 80px;
+}
+
+.video-container {
+  position: relative;
+  height: 100vh;
+  background: var(--secondary-color);
+  margin: 20px;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.product-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.video-controls-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+  padding: 2rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.show-controls {
+  opacity: 1;
+}
+
+.video-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  color: white;
+}
+
+.control-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.control-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.progress-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.time-display {
+  font-size: 1.5rem;
+  white-space: nowrap;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+}
+
+.progress {
+  height: 100%;
+  background: var(--primary-color);
+  border-radius: 3px;
+  transition: width 0.1s ease;
+}
+
+.product-info {
+  padding: 4rem;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.product-category {
+  color: var(--primary-color);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.product-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--secondary-color);
+  margin-bottom: 2rem;
+  line-height: 1.2;
+}
+
+.product-description {
+  font-size: 1.5rem;
+  line-height: 1.7;
+  color: #666;
+  margin-bottom: 3rem;
+}
+
+.product-features {
+  margin-bottom: 3rem;
+}
+
+.product-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.product-actions .btn {
+  flex: 1;
+  min-width: 150px;
+}
+
+.feature-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  color: var(--secondary-color);
+}
+
+.feature-item i {
+  color: var(--primary-color);
+  width: 20px;
+  margin-right: 1rem;
+}
+
+.specifications-section {
+  background: #f8f9fa;
+}
+
+.section-title {
+  color: var(--secondary-color);
+  font-weight: 700;
+  margin-bottom: 3rem;
+}
+
+.spec-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  height: 100%;
+}
+
+.spec-card h4 {
+  color: var(--secondary-color);
+  margin-bottom: 1.5rem;
+}
+
+.spec-card ul {
+  list-style: none;
+  padding: 0;
+}
+
+.spec-card li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+  color: #666;
+}
+
+.spec-card li:last-child {
+  border-bottom: none;
+}
+
+/* Estilos comunes para video controles en móviles */
+@media (max-width: 991px) {
+  .product-info {
+    padding: 2rem;
+    height: auto;
+    min-height: 60vh;
+  }
+  
+  .product-title {
+    font-size: 2.2rem;
+  }
+  
+  .video-container {
+    height: 50vh;
+    margin: 10px;
+  }
+  
+  .specifications-section .col-md-4 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .product-info {
+    padding: 1.5rem;
+  }
+  
+  .product-title {
+    font-size: 1.8rem;
+  }
+  
+  .video-controls {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  
+  .progress-container {
+    order: -1;
+    width: 100%;
+  }
+  
+  .product-actions {
+    flex-direction: column;
+  }
+  
+  .product-actions .btn {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .video-controls-overlay {
+    opacity: 0.3 !important;
+  }
+  
+  .show-controls {
+    opacity: 1 !important;
+  }
+  
+  .control-btn {
+    font-size: 1.4rem !important;
+    padding: 0.8rem !important;
+  }
+  
+  .video-container:active .video-controls-overlay,
+  .video-container:focus .video-controls-overlay {
+    opacity: 1 !important;
+  }
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.slide-in-up {
+  animation: slideInUp 0.8s ease-out;
+}
+
+/* Utilidades de gradientes */
+.gradient-primary {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+}
+
+.gradient-secondary {
+  background: linear-gradient(135deg, var(--secondary-color) 0%, var(--primary-color) 100%);
+}
+
+.gradient-success {
+  background: linear-gradient(135deg, var(--primary-color) 0%, #00b4cc 100%);
+}
+
+/* Responsive utilities */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px;
+  }
+  
+  .btn-custom {
+    padding: 1em 1.5em;
+    font-size: 0.9em;
+  }
+  
+  .card-custom {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* PWA específico */
+@media (display-mode: standalone) {
+  body {
+    user-select: none;
+    -webkit-touch-callout: none;
+  }
+  
+  /* Padding extra para el status bar en dispositivos móviles */
+  #app {
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Loading states */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.loading::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin: -10px 0 0 -10px;
+  border: 2px solid #f3f3f3;
+  border-top: 2px solid var(--primary-color);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Focus visible para accesibilidad */
+*:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
+
+/* Product Information Section */
+.product-information-section {
+  background: #ffffff;
+}
+
+.product-detailed-description.text-center {
+  font-size: 1.5rem;
+  line-height: 1.7;
+  color: #555;
+  max-width: 800px;
+  margin: 0 auto;
+  font-family: 'Montserrat', serif;
+  font-weight: 400;
+}
+
+/* Benefit Cards - Estilos globales para reutilizar */
+.benefit-card {
+  text-align: center;
+  padding: 2rem;
+  height: 100%;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  margin-bottom: 2rem;
+}
+
+.benefit-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Espaciado adicional entre tarjetas */
+.row .col-md-4:not(:last-child) .benefit-card {
+  margin-bottom: 2rem;
+}
+
+/* En desktop, agregar espacio horizontal también */
+@media (min-width: 768px) {
+  .row .col-md-4 {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  .row .col-md-4 .benefit-card {
+    margin-bottom: 0;
+  }
+}
+
+.benefit-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-color), #00a3bb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  color: white;
+  font-size: 2rem;
+  box-shadow: 0 10px 30px rgba(0, 130, 150, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.benefit-card:hover .benefit-icon {
+  transform: scale(1.1);
+}
+
+.benefit-card h4 {
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+  font-weight: 600;
+  font-family: 'Montserrat', serif;
+  font-size: 1.5rem;
+}
+
+.benefit-card p {
+  color: #666;
+  line-height: 1.6;
+  font-family: 'Montserrat', serif;
+  font-size: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .product-information-section {
+    padding: 2rem 0;
+  }
+  
+  .product-detailed-description.text-center {
+    font-size: 1.5rem;
+    padding: 0 1rem;
+  }
+  
+  /* En móviles, mantener el margen inferior entre tarjetas */
+  .benefit-card {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .benefit-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+  
+  .benefit-card {
+    padding: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .benefit-card h4 {
+    font-size: 1.5rem;
+  }
+  
+  .benefit-card p {
+    font-size: 1.5rem;
+  }
+}
