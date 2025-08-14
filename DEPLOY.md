@@ -21,11 +21,12 @@
 
 ## Configuración actual:
 
-- **Base path:** `/greiman-pwa/`
+- **Base path:** Dinámico - `/` para desarrollo, `/greiman-pwa/` para producción
 - **PWA icons:** Configurados con rutas relativas (✅ Corregido el error de descarga)
 - **Manifest:** Configurado para GitHub Pages con rutas correctas
 - **Service Worker:** Incluido y funcional
 - **Assets:** CSS, imágenes y fuentes procesadas correctamente desde src/assets/
+- **Router:** Configurado para usar import.meta.env.BASE_URL automáticamente
 
 ## Notas importantes:
 
@@ -41,3 +42,6 @@
 - ✅ Error de descarga en iconos PWA (`pwa-192x192.png`)
 - ✅ Rutas incorrectas para GitHub Pages
 - ✅ Fuentes e imágenes no procesadas por Vite
+- ✅ Error de Vue Router "[Vue Router warn]: No match found for location with path '/greiman-pwa/'" en desarrollo
+- ✅ Error de carga de main.js "GET https://decc18.github.io/src/main.js net::ERR_ABORTED 404" en GitHub Pages
+- ✅ Error 404 en videos "GET http://localhost:4176/video/...mp4 404 (Not Found)" - rutas con base path correcto

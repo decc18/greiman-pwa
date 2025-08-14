@@ -16,7 +16,7 @@
               <div class="product-card">
                 <div class="card-image">
                   <video 
-                    :src="`/video/Nueva Colección Graiman - SENSA..mp4`"
+                    :src="porcelanatoVideoUrl"
                     muted
                     loop
                     autoplay
@@ -36,7 +36,7 @@
               <div class="product-card">
                 <div class="card-image">
                   <video 
-                    :src="`/video/Rejuvenate and revitalize with the SpaViva handshower..mp4`"
+                    :src="regaderaVideoUrl"
                     muted
                     loop
                     autoplay
@@ -82,6 +82,14 @@ export default {
     FeaturesSection,
     WorksSection,
     InstallPWAFooter
+  },
+  computed: {
+    porcelanatoVideoUrl() {
+      return `${import.meta.env.BASE_URL}video/Nueva Colección Graiman - SENSA..mp4`
+    },
+    regaderaVideoUrl() {
+      return `${import.meta.env.BASE_URL}video/Rejuvenate and revitalize with the SpaViva handshower..mp4`
+    }
   },
   methods: {
     goToPorcelanato() {

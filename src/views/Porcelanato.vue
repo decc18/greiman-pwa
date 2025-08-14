@@ -230,7 +230,6 @@ export default {
   },
   data() {
     return {
-      videoSrc: '/video/Nueva Colección Graiman - SENSA..mp4',
       isPlaying: false,
       isMuted: false,
       currentTime: 0,
@@ -264,6 +263,11 @@ export default {
   computed: {
     progressPercentage() {
       return this.duration > 0 ? (this.currentTime / this.duration) * 100 : 0
+    }
+  },
+  computed: {
+    videoSrc() {
+      return `${import.meta.env.BASE_URL}video/Nueva Colección Graiman - SENSA..mp4`
     }
   },
   methods: {

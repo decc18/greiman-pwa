@@ -4,7 +4,7 @@ import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/greiman-pwa/', // Base path para GitHub Pages
+  base: process.env.NODE_ENV === 'production' ? '/greiman-pwa/' : '/',
   plugins: [
     vue(),
     VitePWA({
