@@ -13,32 +13,46 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html,ico,png,svg,jpg,jpeg,gif,pdf}'],
         globIgnores: [
           '**/node_modules/**/*',
-          '**/video/**/*', // Excluir videos del precaching
-          '**/*.mp4', // Excluir archivos MP4 específicamente
+          '**/video/**/*',
+          '**/*.mp4',
         ],
-        maximumFileSizeToCacheInBytes: 15 * 1024 * 1024, // 15 MB limit
+        maximumFileSizeToCacheInBytes: 15 * 1024 * 1024,
         skipWaiting: true,
         clientsClaim: true,
       },
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
       manifest: {
-        name: 'graiman PWA',
-        short_name: 'graiman',
-        description: 'Una aplicación Progressive Web App desarrollada con Vue.js',
+        name: 'Graiman PWA - Productos de Alta Calidad',
+        short_name: 'Graiman PWA',
+        description: 'Aplicación PWA de productos Graiman - Porcelanato y Regaderas de alta calidad',
         theme_color: '#008296',
         background_color: '#ffffff',
         display: 'standalone',
+        orientation: 'portrait-primary',
         scope: '/greiman-pwa/',
         start_url: '/greiman-pwa/',
+        lang: 'es',
         icons: [
           {
             src: 'pwa-192x192.png',
             sizes: '192x192',
-            type: 'image/png'
+            type: 'image/png',
+            purpose: 'any maskable'
           },
           {
             src: 'pwa-512x512.png',
             sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any maskable'
+          },
+          {
+            src: 'apple-icon-180x180.png',
+            sizes: '180x180',
+            type: 'image/png'
+          },
+          {
+            src: 'android-icon-192x192.png',
+            sizes: '192x192',
             type: 'image/png'
           }
         ]
