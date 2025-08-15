@@ -213,9 +213,8 @@
       </div>
     </section>
 
-    
-    <!-- PWA Install Footer -->
-    <!-- <InstallPWAFooter /> -->
+    <!-- PWA Install Popup -->
+    <PWAInstallPopup />
     
     <!-- PDF Viewer Modal -->
     <PDFViewer 
@@ -230,6 +229,7 @@
 <script>
 import SimpleHeader from '../components/SimpleHeader.vue'
 import InstallPWAFooter from '../components/InstallPWAFooter.vue'
+import PWAInstallPopup from '../components/PWAInstallPopup.vue'
 import PDFViewer from '../components/PDFViewer.vue'
 import ImageGallery from '../components/ImageGallery.vue'
 import ProductPricing from '../components/ProductPricing.vue'
@@ -240,6 +240,7 @@ export default {
   components: {
     SimpleHeader,
     InstallPWAFooter,
+    PWAInstallPopup,
     PDFViewer,
     ImageGallery,
     ProductPricing
