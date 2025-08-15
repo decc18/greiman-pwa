@@ -108,16 +108,7 @@ export default {
   },
   
   // Auto-abrir PDF cuando se muestra el modal (opcional)
-  watch: {
-    isVisible(newVal) {
-      if (newVal) {
-        // Esperar un poco y luego abrir automáticamente
-        setTimeout(() => {
-          this.openInNewTab()
-        }, 500)
-      }
-    }
-  }
+  
 }
 </script>
 
