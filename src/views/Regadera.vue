@@ -83,6 +83,16 @@
                 </div>
               </div>
               
+              <!-- Información de Precio y Stock -->
+              <ProductPricing
+                :current-price="productData?.pricing.currentPrice"
+                :original-price="productData?.pricing.originalPrice"
+                :price-unit="productData?.pricing.unit"
+                :stock-quantity="productData?.inventory.quantity"
+                :stock-unit="productData?.inventory.unit"
+                :features="productData?.features || []"
+              />
+              
               <div class="product-actions">
                 <button class="btn btn-primary btn-lg">
                   <i class="fa fa-phone me-2"></i>
@@ -130,7 +140,7 @@
           <div class="col-md-4 mb-4">
             <div class="benefit-card">
               <div class="benefit-icon">
-                <i class="fa fa-gem"></i>
+                <i class="fa fa-diamond"></i>
               </div>
               <h4>Diseño Premium</h4>
               <p>Acabados de alta calidad con tratamiento anti-calcificación para mantener el brillo duradero.</p>
@@ -200,13 +210,16 @@
 import SimpleHeader from '../components/SimpleHeader.vue'
 import InstallPWAFooter from '../components/InstallPWAFooter.vue'
 import PDFViewer from '../components/PDFViewer.vue'
+import ProductPricing from '../components/ProductPricing.vue'
+import { getProductData } from '../data/products.js'
 
 export default {
   name: 'Regadera',
   components: {
     SimpleHeader,
     InstallPWAFooter,
-    PDFViewer
+    PDFViewer,
+    ProductPricing
   },
   data() {
     return {
@@ -217,7 +230,8 @@ export default {
       showControls: false,
       controlsTimeout: null,
       showPDFViewer: false,
-      hasPlayedOnce: false // Nuevo: controlar si ya se reprodujo una vez
+      hasPlayedOnce: false, // Nuevo: controlar si ya se reprodujo una vez
+      productData: getProductData('regadera') // Datos del producto
     }
   },
   computed: {
@@ -368,6 +382,24 @@ export default {
   border-radius: 15px;
   overflow: hidden;
   background: #000;
+}
+
+.product-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Ajustes específicos para desktop */
+@media (min-width: 992px) {
+  .video-container {
+    height: 400px;
+  }
+  
+  .product-video {
+    object-fit: contain;
+  }
 }
 
 .video-controls {

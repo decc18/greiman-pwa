@@ -369,6 +369,7 @@ html::-webkit-scrollbar-thumb:hover {
   line-height: 1.7;
   color: #666;
   margin-bottom: 3rem;
+  padding: 1.5rem;
 }
 
 .product-features {
@@ -463,7 +464,7 @@ html::-webkit-scrollbar-thumb:hover {
 
 @media (max-width: 576px) {
   .product-info {
-    padding: 1.5rem;
+    padding: 1.0rem;
   }
   
   .product-title {
@@ -636,7 +637,7 @@ html {
 /* Benefit Cards - Estilos globales para reutilizar */
 .benefit-card {
   text-align: center;
-  padding: 2rem;
+  padding: 1.5rem;
   height: 100%;
   background: white;
   border-radius: 15px;

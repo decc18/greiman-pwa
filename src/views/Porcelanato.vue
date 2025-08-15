@@ -65,7 +65,7 @@
               
               <div class="product-features">
                 <div class="feature-item">
-                  <i class="fa fa-diamond"></i>
+                  <i class="fa fa-cube"></i>
                   <span>Alta resistencia y durabilidad</span>
                 </div>
                 <div class="feature-item">
@@ -73,7 +73,7 @@
                   <span>Resistente al agua y manchas</span>
                 </div>
                 <div class="feature-item">
-                  <i class="fa fa-snowflake-o"></i>
+                  <i class="fa fa-asterisk"></i>
                   <span>Resistente a heladas</span>
                 </div>
                 <div class="feature-item">
@@ -81,6 +81,16 @@
                   <span>Resistente al calor</span>
                 </div>
               </div>
+              
+              <!-- Información de Precio y Stock -->
+              <ProductPricing
+                :current-price="productData?.pricing.currentPrice"
+                :original-price="productData?.pricing.originalPrice"
+                :price-unit="productData?.pricing.unit"
+                :stock-quantity="productData?.inventory.quantity"
+                :stock-unit="productData?.inventory.unit"
+                :features="productData?.features || []"
+              />
               
               <div class="product-actions">
                 <button class="btn btn-primary">
@@ -129,7 +139,7 @@
           <div class="col-md-4 mb-4">
             <div class="benefit-card">
               <div class="benefit-icon">
-                <i class="fa fa-diamond"></i>
+                <i class="fa fa-cube"></i>
               </div>
               <h4>Mármol · Porcelanato</h4>
               <p>Tecnología de última generación que combina la elegancia del mármol con la resistencia del porcelanato de alta calidad.</p>
@@ -219,6 +229,8 @@ import SimpleHeader from '../components/SimpleHeader.vue'
 import InstallPWAFooter from '../components/InstallPWAFooter.vue'
 import PDFViewer from '../components/PDFViewer.vue'
 import ImageGallery from '../components/ImageGallery.vue'
+import ProductPricing from '../components/ProductPricing.vue'
+import { getProductData } from '../data/products.js'
 
 export default {
   name: 'Porcelanato',
@@ -226,7 +238,8 @@ export default {
     SimpleHeader,
     InstallPWAFooter,
     PDFViewer,
-    ImageGallery
+    ImageGallery,
+    ProductPricing
   },
   data() {
     return {
@@ -238,6 +251,7 @@ export default {
       controlsTimeout: null,
       showPDFViewer: false,
       hasPlayedOnce: false, // Nuevo: controlar si ya se reprodujo una vez
+      productData: getProductData('porcelanato'), // Datos del producto
       galleryImages: [
         {
           src: 'porcelanato-ambiente.jpg',
@@ -408,11 +422,28 @@ export default {
 /* Estilos para el reproductor de video */
 .video-container {
   position: relative;
-  
   height: 300px;
   border-radius: 15px;
   overflow: hidden;
   background: #000;
+}
+
+.product-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Ajustes específicos para desktop */
+@media (min-width: 992px) {
+  .video-container {
+    height: 400px;
+  }
+  
+  .product-video {
+    object-fit: contain;
+  }
 }
 
 .video-controls {
