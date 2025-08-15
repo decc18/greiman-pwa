@@ -6,79 +6,56 @@
           <i class="fa fa-file-pdf-o me-2"></i>
           {{ title }}
         </h3>
-        <div class="modal-controls">
-          <button @click="zoomOut" class="control-btn" title="Alejar">
-            <i class="fa fa-search-minus"></i>
-          </button>
-          <span class="zoom-indicator">{{ Math.round(zoomLevel * 100) }}%</span>
-          <button @click="zoomIn" class="control-btn" title="Acercar">
-            <i class="fa fa-search-plus"></i>
-          </button>
-          <button @click="downloadPDF" class="control-btn" title="Descargar">
-            <i class="fa fa-download"></i>
-          </button>
-          <button @click="closeModal" class="control-btn close-btn" title="Cerrar">
-            <i class="fa fa-times"></i>
-          </button>
-        </div>
+        <button @click="closeModal" class="control-btn close-btn" title="Cerrar">
+          <i class="fa fa-times"></i>
+        </button>
       </div>
       
       <div class="pdf-modal-content">
-        <div class="pdf-loading" v-if="isLoading">
-          <i class="fa fa-spinner fa-spin"></i>
-          <p>Cargando catálogo...</p>
-          <small v-if="retryCount > 0">Intento {{ retryCount + 1 }} de {{ maxRetries + 1 }}</small>
-        </div>
-        
-        <!-- Alternativa: Mostrar siempre opciones para ver el PDF -->
-        <div v-if="!isLoading" class="pdf-content-container">
-          <iframe 
-            v-if="!hasError"
-            :src="pdfUrl"
-            class="pdf-iframe"
-            :style="{ transform: `scale(${zoomLevel})` }"
-            @load="onPdfLoad"
-            @error="onPdfError"
-            ref="pdfIframe"
-            frameborder="0"
-            scrolling="auto"
-            allow="fullscreen"
-          ></iframe>
-          
-          <!-- Fallback: Opciones alternativas si el iframe falla -->
-          <div v-if="hasError" class="pdf-fallback">
-            <div class="fallback-options">
-              <h4>Ver Catálogo PDF</h4>
-              <p>El visor integrado no está disponible. Haz clic para abrir el catálogo:</p>
-              
-              <div class="option-buttons">
-                <button @click="openInNewTab" class="option-btn">
-                  <i class="fa fa-external-link"></i>
-                  <span>Abrir Catálogo PDF</span>
-                </button>
-              </div>
-            </div>
+        <!-- Información del PDF -->
+        <div class="pdf-info-section">
+          <div class="pdf-icon">
+            <i class="fa fa-file-pdf-o"></i>
+          </div>
+          <div class="pdf-details">
+            <h4>{{ fileName }}</h4>
+            <p>Catálogo completo con especificaciones técnicas, medidas y aplicaciones del producto.</p>
           </div>
         </div>
-      </div>
-      
-      <div class="pdf-modal-footer">
-        <div class="pdf-info">
-          <span class="pdf-name">{{ fileName }}</span>
-        </div>
-        <div class="mobile-controls">
-          <button @click="zoomOut" class="mobile-btn">
-            <i class="fa fa-search-minus"></i>
+        
+        <!-- Opciones de visualización -->
+        <div class="pdf-options">
+          <button @click="openInNewTab" class="option-btn primary">
+            <i class="fa fa-external-link"></i>
+            <div class="btn-content">
+              <span>Ver Catálogo PDF</span>
+              <small>Abrir en nueva pestaña</small>
+            </div>
           </button>
-          <button @click="resetZoom" class="mobile-btn">
-            <i class="fa fa-expand"></i>
-          </button>
-          <button @click="zoomIn" class="mobile-btn">
-            <i class="fa fa-search-plus"></i>
-          </button>
-          <button @click="downloadPDF" class="mobile-btn">
+          
+          <button @click="downloadPDF" class="option-btn secondary">
             <i class="fa fa-download"></i>
+            <div class="btn-content">
+              <span>Descargar PDF</span>
+              <small>Guardar en dispositivo</small>
+            </div>
           </button>
+        </div>
+        
+        <!-- Información adicional -->
+        <div class="pdf-features">
+          <div class="feature-item">
+            <i class="fa fa-info-circle"></i>
+            <span>Especificaciones técnicas completas</span>
+          </div>
+          <div class="feature-item">
+            <i class="fa fa-image"></i>
+            <span>Imágenes de alta calidad</span>
+          </div>
+          <div class="feature-item">
+            <i class="fa fa-ruler"></i>
+            <span>Medidas y dimensiones</span>
+          </div>
         </div>
       </div>
     </div>
@@ -102,48 +79,24 @@ export default {
       default: 'Catálogo PDF'
     }
   },
-  data() {
-    return {
-      isLoading: true,
-      hasError: false,
-      zoomLevel: 1,
-      minZoom: 0.5,
-      maxZoom: 2.5,
-      loadTimeout: null,
-      retryCount: 0,
-      maxRetries: 2
-    }
-  },
   computed: {
-    pdfUrl() {
-      // Intentar diferentes formas de mostrar el PDF
-      const baseUrl = this.pdfPath
-      // Usar el visor de PDF del navegador directamente
-      return baseUrl
-    },
     fileName() {
-      return this.pdfPath.split('/').pop()
+      const path = this.pdfPath.split('/')
+      return path[path.length - 1]
     }
   },
   methods: {
     closeModal() {
       this.$emit('close')
-      this.resetZoom()
     },
-    zoomIn() {
-      if (this.zoomLevel < this.maxZoom) {
-        this.zoomLevel += 0.25
-      }
+    
+    openInNewTab() {
+      // Abrir PDF en nueva pestaña - método más confiable
+      window.open(this.pdfPath, '_blank', 'noopener,noreferrer')
     },
-    zoomOut() {
-      if (this.zoomLevel > this.minZoom) {
-        this.zoomLevel -= 0.25
-      }
-    },
-    resetZoom() {
-      this.zoomLevel = 1
-    },
+    
     downloadPDF() {
+      // Crear enlace de descarga
       const link = document.createElement('a')
       link.href = this.pdfPath
       link.download = this.fileName
@@ -151,118 +104,19 @@ export default {
       document.body.appendChild(link)
       link.click()
       document.body.removeChild(link)
-    },
-    retryLoad() {
-      this.retryCount++
-      this.isLoading = true
-      this.hasError = false
-      this.clearLoadTimeout()
-      
-      // Reinicializar el iframe
-      this.$nextTick(() => {
-        if (this.$refs.pdfIframe) {
-          this.$refs.pdfIframe.src = this.pdfUrl
-        }
-        this.startLoadTimeout()
-      })
-    },
-    startLoadTimeout() {
-      this.loadTimeout = setTimeout(() => {
-        if (this.isLoading) {
-          console.log('PDF taking too long to load, showing alternative options')
-          this.isLoading = false
-          this.hasError = true
-        }
-      }, 6000) // 6 segundos timeout más generoso
-    },
-    clearLoadTimeout() {
-      if (this.loadTimeout) {
-        clearTimeout(this.loadTimeout)
-        this.loadTimeout = null
-      }
-    },
-    openInNewTab() {
-      window.open(this.pdfPath, '_blank')
-    },
-    onPdfLoad() {
-      this.clearLoadTimeout()
-      this.isLoading = false
-      this.hasError = false
-      this.retryCount = 0
-      console.log('PDF loaded successfully')
-    },
-    onPdfError() {
-      this.clearLoadTimeout()
-      this.isLoading = false
-      this.hasError = true
-      console.error('Error loading PDF')
-    },
-    handleKeyPress(event) {
-      if (this.isVisible) {
-        switch(event.key) {
-          case 'Escape':
-            this.closeModal()
-            break
-          case '+':
-          case '=':
-            this.zoomIn()
-            break
-          case '-':
-            this.zoomOut()
-            break
-          case '0':
-            this.resetZoom()
-            break
-        }
-      }
-    },
-    async checkPDFAccess() {
-      try {
-        const response = await fetch(this.pdfPath)
-        if (response.ok) {
-          console.log('PDF is accessible, forcing iframe load')
-          // PDF es accesible, forzar la carga del iframe
-          this.isLoading = false
-          this.hasError = false
-          
-          // Recargar el iframe si existe
-          if (this.$refs.pdfIframe) {
-            this.$refs.pdfIframe.src = this.pdfUrl
-          }
-        } else {
-          console.error('PDF not found or not accessible')
-          this.hasError = true
-        }
-      } catch (error) {
-        console.error('Error checking PDF access:', error)
-        this.hasError = true
-      }
     }
   },
+  
+  // Auto-abrir PDF cuando se muestra el modal (opcional)
   watch: {
     isVisible(newVal) {
       if (newVal) {
-        this.isLoading = true
-        this.hasError = false
-        this.retryCount = 0
-        document.body.style.overflow = 'hidden'
-        window.addEventListener('keydown', this.handleKeyPress)
-        
-        // Dar tiempo para que el iframe se monte y luego iniciar el timeout
-        this.$nextTick(() => {
-          this.startLoadTimeout()
-        })
-      } else {
-        this.clearLoadTimeout()
-        document.body.style.overflow = ''
-        window.removeEventListener('keydown', this.handleKeyPress)
+        // Esperar un poco y luego abrir automáticamente
+        setTimeout(() => {
+          this.openInNewTab()
+        }, 500)
       }
     }
-  },
-  beforeUnmount() {
-    this.clearLoadTimeout()
-    document.body.style.overflow = ''
-    window.removeEventListener('keydown', this.handleKeyPress)
   }
 }
 </script>
@@ -272,333 +126,264 @@ export default {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
+  width: 100%;
+  height: 100%;
   background: rgba(0, 0, 0, 0.8);
-  z-index: 2000;
   display: flex;
-  align-items: center;
   justify-content: center;
-  padding: 1rem;
+  align-items: center;
+  z-index: 9999;
   backdrop-filter: blur(5px);
 }
 
 .pdf-modal-container {
   background: white;
-  border-radius: 15px;
-  width: 90vw;
-  height: 85vh;
-  max-width: 1200px;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  border-radius: 20px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
   overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-50px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
 }
 
 .pdf-modal-header {
-  background: linear-gradient(135deg, var(--primary-color), #00a3bb);
-  color: white;
-  padding: 1rem 1.5rem;
+  padding: 2rem 2rem 1rem;
+  border-bottom: 1px solid #eee;
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
 }
 
 .modal-title {
   margin: 0;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   font-weight: 600;
-  display: flex;
-  align-items: center;
+  font-family: 'Montserrat', serif;
 }
 
-.modal-controls {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.control-btn {
+.close-btn {
   background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  border: none;
   color: white;
-  padding: 0.5rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 36px;
-  height: 36px;
-}
-
-.control-btn:hover {
-  background: rgba(255, 255, 255, 0.3);
-  transform: translateY(-1px);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
 }
 
 .close-btn:hover {
-  background: rgba(220, 53, 69, 0.8);
-}
-
-.zoom-indicator {
-  background: rgba(255, 255, 255, 0.2);
-  padding: 0.5rem 0.75rem;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  min-width: 50px;
-  text-align: center;
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(90deg);
 }
 
 .pdf-modal-content {
-  flex: 1;
-  position: relative;
-  background: #f8f9fa;
-  overflow: hidden;
+  padding: 2rem;
+}
+
+.pdf-info-section {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+  border-radius: 15px;
 }
 
-.pdf-content-container {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.pdf-fallback {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  height: 100%;
-}
-
-.fallback-options {
-  text-align: center;
-  color: var(--secondary-color);
-}
-
-.fallback-options h4 {
-  margin-bottom: 1rem;
+.pdf-icon {
+  font-size: 3rem;
   color: var(--primary-color);
 }
 
-.fallback-options p {
-  margin-bottom: 2rem;
-  color: #666;
+.pdf-details h4 {
+  margin: 0 0 0.5rem 0;
+  color: var(--secondary-color);
+  font-weight: 600;
+  font-family: 'Montserrat', serif;
 }
 
-.option-buttons {
+.pdf-details p {
+  margin: 0;
+  color: #666;
+  line-height: 1.4;
+  font-family: 'Montserrat', serif;
+}
+
+.pdf-options {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  align-items: center;
+  margin-bottom: 2rem;
 }
 
 .option-btn {
-  background: var(--primary-color);
-  color: white;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.5rem;
   border: none;
-  padding: 1rem 2rem;
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  font-size: 1rem;
-  font-weight: 600;
-  min-width: 200px;
-  justify-content: flex-start;
+  text-align: left;
+  font-family: 'Montserrat', serif;
+  position: relative;
+  overflow: hidden;
+}
+
+.option-btn.primary {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: white;
+}
+
+.option-btn.secondary {
+  background: #f8f9fa;
+  color: var(--secondary-color);
+  border: 2px solid var(--primary-color);
 }
 
 .option-btn:hover {
-  background: var(--secondary-color);
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 130, 150, 0.3);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.option-btn.primary:hover {
+  background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+}
+
+.option-btn.secondary:hover {
+  background: var(--primary-color);
+  color: white;
 }
 
 .option-btn i {
-  font-size: 1.2rem;
+  font-size: 1.5rem;
+  flex-shrink: 0;
 }
 
-.pdf-iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
-  transform-origin: center;
-  transition: transform 0.3s ease;
-}
-
-.pdf-loading,
-.pdf-error {
+.btn-content {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: var(--secondary-color);
+  gap: 0.25rem;
+}
+
+.btn-content span {
+  font-weight: 600;
   font-size: 1.1rem;
 }
 
-.pdf-loading i {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: var(--primary-color);
-}
-
-.pdf-error i {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  color: #dc3545;
-}
-
-.error-actions {
-  display: flex;
-  gap: 0.5rem;
-  margin-top: 1rem;
-}
-
-.btn {
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border: none;
-  display: flex;
-  align-items: center;
-}
-
-.btn-primary {
-  background: var(--primary-color);
-  color: white;
-}
-
-.btn-primary:hover {
-  background: var(--secondary-color);
-}
-
-.btn-secondary {
-  background: #6c757d;
-  color: white;
-}
-
-.btn-secondary:hover {
-  background: #545b62;
-}
-
-.me-2 {
-  margin-right: 0.5rem;
-}
-
-.pdf-modal-footer {
-  background: #f8f9fa;
-  border-top: 1px solid #dee2e6;
-  padding: 0.75rem 1.5rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.pdf-info {
-  color: var(--secondary-color);
+.btn-content small {
+  opacity: 0.8;
   font-size: 0.9rem;
 }
 
-.pdf-name {
-  font-weight: 600;
+.pdf-features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
-.mobile-controls {
-  display: none;
-  gap: 0.5rem;
-}
-
-.mobile-btn {
-  background: var(--primary-color);
-  color: white;
-  border: none;
-  padding: 0.5rem;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  width: 36px;
-  height: 36px;
+.feature-item {
   display: flex;
   align-items: center;
-  justify-content: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  background: rgba(0, 130, 150, 0.05);
+  border-radius: 8px;
+  font-family: 'Montserrat', serif;
 }
 
-.mobile-btn:hover {
-  background: var(--secondary-color);
-  transform: translateY(-1px);
+.feature-item i {
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  flex-shrink: 0;
 }
 
+.feature-item span {
+  color: #666;
+  font-size: 0.95rem;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
   .pdf-modal-container {
-    width: 95vw;
-    height: 90vh;
-    margin: 0;
+    width: 95%;
+    margin: 1rem;
   }
   
+  .pdf-modal-header {
+    padding: 1.5rem 1.5rem 0.75rem;
+  }
+  
+  .modal-title {
+    font-size: 1.3rem;
+  }
+  
+  .pdf-modal-content {
+    padding: 1.5rem;
+  }
+  
+  .pdf-info-section {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    padding: 1.25rem;
+  }
+  
+  .pdf-icon {
+    font-size: 2.5rem;
+  }
+  
+  .option-btn {
+    padding: 1.25rem;
+    justify-content: center;
+  }
+  
+  .option-btn i {
+    font-size: 1.8rem;
+  }
+  
+  .btn-content span {
+    font-size: 1.05rem;
+  }
+}
+
+@media (max-width: 480px) {
   .pdf-modal-header {
     padding: 1rem;
   }
   
   .modal-title {
+    font-size: 1.1rem;
+  }
+  
+  .pdf-modal-content {
+    padding: 1rem;
+  }
+  
+  .close-btn {
+    width: 35px;
+    height: 35px;
     font-size: 1rem;
-  }
-  
-  .modal-controls {
-    gap: 0.25rem;
-  }
-  
-  .control-btn {
-    width: 32px;
-    height: 32px;
-    padding: 0.4rem;
-  }
-  
-  .zoom-indicator {
-    font-size: 0.8rem;
-    padding: 0.4rem 0.6rem;
-    min-width: 45px;
-  }
-  
-  .mobile-controls {
-    display: flex;
-  }
-  
-  .pdf-modal-footer {
-    padding: 0.5rem 1rem;
-  }
-}
-
-@media (max-width: 576px) {
-  .pdf-modal-overlay {
-    padding: 0.5rem;
-  }
-  
-  .modal-controls .control-btn:not(.close-btn) {
-    display: none;
-  }
-  
-  .zoom-indicator {
-    display: none;
-  }
-  
-  .pdf-info {
-    font-size: 0.8rem;
-  }
-  
-  .mobile-btn {
-    width: 32px;
-    height: 32px;
   }
 }
 </style>
