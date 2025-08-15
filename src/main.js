@@ -25,4 +25,30 @@ const updateSW = registerSW({
   }
 })
 
+// Check if app is launched from URL after installation
+function checkLaunchFromURL() {
+  const isStandalone = window.matchMedia('(display-mode: standalone)').matches || 
+                      window.navigator.standalone ||
+                      document.referrer.includes('android-app://')
+  
+  const hasInstallParam = new URLSearchParams(window.location.search).has('utm_source')
+  const isFromURL = document.referrer && !isStandalone
+  
+  console.log('Launch detection:', {
+    isStandalone,
+    hasInstallParam,
+    isFromURL,
+    referrer: document.referrer,
+    search: window.location.search
+  })
+  
+  if (isStandalone) {
+    console.log('App launched in standalone mode')
+    localStorage.setItem('pwa-installed', 'true')
+  }
+}
+
+// Run launch detection
+checkLaunchFromURL()
+
 createApp(App).use(router).mount('#app')

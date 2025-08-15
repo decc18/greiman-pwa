@@ -20,6 +20,31 @@ export default defineConfig({
         maximumFileSizeToCacheInBytes: 15 * 1024 * 1024,
         skipWaiting: true,
         clientsClaim: true,
+        navigationFallback: 'index.html',
+        navigateFallbackDenylist: [/^\/_/, /\/[^/?]+\.[^/]+$/],
+        runtimeCaching: [
+          {
+            urlPattern: /^https:\/\/fonts\.googleapis\.com\//,
+            handler: 'StaleWhileRevalidate',
+            options: {
+              cacheName: 'google-fonts-stylesheets',
+            }
+          },
+          {
+            urlPattern: /^https:\/\/fonts\.gstatic\.com\//,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'google-fonts-webfonts',
+              cacheKeyWillBeUsed: async ({ request }) => {
+                return `${request.url}?v=1`;
+              },
+              expiration: {
+                maxEntries: 30,
+                maxAgeSeconds: 60 * 60 * 24 * 365 // 1 year
+              }
+            }
+          }
+        ]
       },
       includeAssets: ['favicon.ico', 'apple-touch-icon.png', 'mask-icon.svg'],
       manifest: {
@@ -34,6 +59,11 @@ export default defineConfig({
         start_url: process.env.NODE_ENV === 'production' ? '/greiman-pwa/' : '/',
         lang: 'es',
         categories: ['business', 'shopping'],
+        prefer_related_applications: false,
+        display_override: ['standalone', 'minimal-ui'],
+        launch_handler: {
+          client_mode: 'focus-existing'
+        },
         icons: [
           {
             src: 'pwa-192x192.png',

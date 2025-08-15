@@ -4,14 +4,31 @@ export class PWAInstaller {
     this.deferredPrompt = null
     this.isInstalled = false
     this.isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
-    this.isStandalone = window.matchMedia('(display-mode: standalone)').matches || 
-                       window.navigator.standalone || 
-                       document.referrer.includes('android-app://')
+    this.isStandalone = this.checkStandalone()
     
     // Check if PWA meets installability criteria
     this.isPWAInstallable = this.checkPWAInstallability()
     
     this.init()
+  }
+
+  checkStandalone() {
+    // Multiple ways to detect if running in standalone mode
+    const standalone = window.matchMedia('(display-mode: standalone)').matches || 
+                       window.navigator.standalone || 
+                       document.referrer.includes('android-app://') ||
+                       window.matchMedia('(display-mode: minimal-ui)').matches ||
+                       window.location.search.includes('utm_source=homescreen')
+    
+    console.log('Standalone detection:', {
+      displayModeStandalone: window.matchMedia('(display-mode: standalone)').matches,
+      navigatorStandalone: window.navigator.standalone,
+      androidApp: document.referrer.includes('android-app://'),
+      minimalUI: window.matchMedia('(display-mode: minimal-ui)').matches,
+      homescreenUTM: window.location.search.includes('utm_source=homescreen')
+    })
+    
+    return standalone
   }
 
   checkPWAInstallability() {
@@ -52,12 +69,34 @@ export class PWAInstaller {
       this.isInstalled = true
       this.deferredPrompt = null
       this.dispatchEvent('installed', { installed: true })
+      
+      // Set installed flag and update detection
+      localStorage.setItem('pwa-installed', 'true')
+      this.updateStandaloneStatus()
     })
 
     // Check if already installed
-    if (this.isStandalone) {
+    if (this.isStandalone || localStorage.getItem('pwa-installed') === 'true') {
       this.isInstalled = true
-      console.log('PWA is already installed')
+      console.log('PWA is already installed or running in standalone mode')
+    }
+
+    // Listen for display mode changes
+    const mediaQuery = window.matchMedia('(display-mode: standalone)')
+    mediaQuery.addEventListener('change', (e) => {
+      console.log('Display mode changed:', e.matches ? 'standalone' : 'browser')
+      this.updateStandaloneStatus()
+    })
+  }
+
+  updateStandaloneStatus() {
+    const wasStandalone = this.isStandalone
+    this.isStandalone = this.checkStandalone()
+    
+    if (!wasStandalone && this.isStandalone) {
+      console.log('App opened in standalone mode')
+      this.isInstalled = true
+      localStorage.setItem('pwa-installed', 'true')
     }
   }
 

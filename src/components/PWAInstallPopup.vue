@@ -18,14 +18,14 @@
           <img src="/pwa-192x192.png" alt="Icono Graiman PWA" />
         </div>
         
-        <h3 id="install-title" class="popup-title">¡Instala Graiman PWA!</h3>
+        <h3 id="install-title" class="popup-title">¡Instala Graiman!</h3>
         
         <p class="popup-description">
           Accede rápidamente a nuestros productos desde tu dispositivo. 
           La aplicación funciona sin conexión y ocupa poco espacio.
         </p>
         
-        <div class="popup-features">
+        <!-- <div class="popup-features">
           <div class="feature-item">
             <i class="fa fa-bolt"></i>
             <span>Acceso rápido</span>
@@ -39,7 +39,7 @@
             <span>Experiencia nativa</span>
           </div>
         </div>
-        
+         -->
         <div class="popup-actions">
           <button 
             class="btn-install" 
@@ -125,25 +125,35 @@ export default {
   },
   methods: {
     checkInstallability() {
+      console.log('Checking PWA installability...')
+      console.log('Is standalone:', pwaInstaller.isStandalone)
+      console.log('Is installed:', pwaInstaller.isInstalled)
+      console.log('Should show popup:', PWAInstaller.shouldShowPopup())
+      
       // Don't show if already installed or should not show
-      if (pwaInstaller.isStandalone || !PWAInstaller.shouldShowPopup()) {
+      if (pwaInstaller.isStandalone || pwaInstaller.isInstalled || !PWAInstaller.shouldShowPopup()) {
+        console.log('Popup not shown - app already installed or in standalone mode')
         return
       }
       
       // For better user experience, wait for the page to be fully loaded
       if (document.readyState !== 'complete') {
         window.addEventListener('load', () => {
-          setTimeout(() => this.showPopupIfReady(), 3000)
+          setTimeout(() => this.showPopupIfReady(), 1000)
         })
       } else {
-        setTimeout(() => this.showPopupIfReady(), 3000)
+        setTimeout(() => this.showPopupIfReady(), 1000)
       }
     },
 
     showPopupIfReady() {
+      // Double check before showing
       if (!pwaInstaller.isInstalled && !pwaInstaller.isStandalone) {
+        console.log('Showing PWA install popup')
         this.showPopup = true
         PWAInstaller.setLastShown()
+      } else {
+        console.log('Popup not shown - app state changed')
       }
     },
     
