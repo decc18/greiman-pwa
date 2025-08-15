@@ -75,15 +75,13 @@
 import SimpleHeader from '../components/SimpleHeader.vue'
 import FeaturesSection from '../components/FeaturesSection.vue'
 import WorksSection from '../components/WorksSection.vue'
-import InstallPWAFooter from '../components/InstallPWAFooter.vue'
 
 export default {
   name: 'Home',
   components: {
     SimpleHeader,
     FeaturesSection,
-    WorksSection,
-    InstallPWAFooter
+    WorksSection
   },
   computed: {
     porcelanatoVideoUrl() {

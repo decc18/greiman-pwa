@@ -94,7 +94,10 @@
               />
               
               <div class="product-actions">
-                <button class="btn btn-primary btn-lg">
+                <button 
+                  @click="contactWhatsApp" 
+                  class="btn btn-primary btn-lg"
+                >
                   <i class="fa fa-phone me-2"></i>
                   Contactar
                 </button>
@@ -327,6 +330,11 @@ export default {
     },
     showCatalog() {
       this.showPDFViewer = true
+    },
+    contactWhatsApp() {
+      // Abrir WhatsApp con mensaje personalizado para regadera
+      const whatsappUrl = 'https://api.whatsapp.com/send?phone=593997585127&text=%C2%A1Hola%20Graiman!%20Vi%20sus%20productos%20en%20la%20web%20y%20estoy%20interesado/a.%20Quiero%20recibir%20asesor%C3%ADa.'
+      window.open(whatsappUrl, '_blank')
     }
   },
   mounted() {
