@@ -91,14 +91,16 @@ export default {
     },
     
     openInNewTab() {
-      // Abrir PDF en nueva pestaña - método más confiable
-      window.open(this.pdfPath, '_blank', 'noopener,noreferrer')
+      // URL hardcodeada para GitHub Pages - más confiable
+      const hardcodedPdfUrl = 'https://decc18.github.io/greiman-pwa/pdf/porcelanato.pdf'
+      window.open(hardcodedPdfUrl, '_blank', 'noopener,noreferrer')
     },
     
     downloadPDF() {
-      // Crear enlace de descarga
+      // URL hardcodeada para descarga
+      const hardcodedPdfUrl = 'https://decc18.github.io/greiman-pwa/pdf/porcelanato.pdf'
       const link = document.createElement('a')
-      link.href = this.pdfPath
+      link.href = hardcodedPdfUrl
       link.download = this.fileName
       link.target = '_blank'
       document.body.appendChild(link)
