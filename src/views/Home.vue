@@ -65,9 +65,6 @@
 
     <!-- Works Section -->
     <!-- <WorksSection /> -->
-    
-    <!-- PWA Install Popup -->
-    <PWAInstallPopup />
   </div>
 </template>
 
@@ -75,15 +72,13 @@
 import SimpleHeader from '../components/SimpleHeader.vue'
 import FeaturesSection from '../components/FeaturesSection.vue'
 import WorksSection from '../components/WorksSection.vue'
-import PWAInstallPopup from '../components/PWAInstallPopup.vue'
 
 export default {
   name: 'Home',
   components: {
     SimpleHeader,
     FeaturesSection,
-    WorksSection,
-    PWAInstallPopup
+    WorksSection
   },
   computed: {
     porcelanatoVideoUrl() {

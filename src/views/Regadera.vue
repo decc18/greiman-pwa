@@ -4,16 +4,6 @@
     <SimpleHeader page-title="Regadera SpaViva" />
 
     <!-- Product Hero Section -->
-        <!-- PWA Install Popup -->
-    <PWAInstallPopup />
-    
-    <!-- PDF Viewer Modal -->
-    <PDFViewer 
-      :isVisible="showPDFViewer"
-      :pdfPath="`${$router.options.history.base}pdf/porcelanato.pdf`"
-      title="Catálogo Regadera SpaViva"
-      @close="showPDFViewer = false"
-    />
     <section class="product-hero">
       <div class="container-fluid px-0">
         <div class="row no-gutters align-items-center min-vh-100">
@@ -206,14 +196,11 @@
       </div>
     </section>
     
-    <!-- PWA Install Popup -->
-    <PWAInstallPopup />
-    
     <!-- PDF Viewer Modal -->
     <PDFViewer 
       :isVisible="showPDFViewer"
       :pdfPath="`${$router.options.history.base}pdf/porcelanato.pdf`"
-      title="Catálogo SpaViva HandShower"
+      title="Catálogo de Productos Graiman"
       @close="showPDFViewer = false"
     />
   </div>
@@ -222,7 +209,6 @@
 <script>
 import SimpleHeader from '../components/SimpleHeader.vue'
 import InstallPWAFooter from '../components/InstallPWAFooter.vue'
-import PWAInstallPopup from '../components/PWAInstallPopup.vue'
 import PDFViewer from '../components/PDFViewer.vue'
 import ProductPricing from '../components/ProductPricing.vue'
 import { getProductData } from '../data/products.js'
@@ -232,7 +218,6 @@ export default {
   components: {
     SimpleHeader,
     InstallPWAFooter,
-    PWAInstallPopup,
     PDFViewer,
     ProductPricing
   },
@@ -252,9 +237,7 @@ export default {
   computed: {
     progressPercentage() {
       return this.duration > 0 ? (this.currentTime / this.duration) * 100 : 0
-    }
-  },
-  computed: {
+    },
     videoSrc() {
       return `${import.meta.env.BASE_URL}video/Rejuvenate and revitalize with the SpaViva handshower..mp4`
     }
