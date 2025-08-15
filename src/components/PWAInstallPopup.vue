@@ -111,7 +111,9 @@ export default {
       showPopup: false,
       showInstructions: false,
       instructions: null,
-      isInstalling: false
+      isInstalling: false,
+      pwaInstaller, // Make pwaInstaller available in template
+      PWAInstaller // Make PWAInstaller class available in template
     }
   },
   mounted() {
