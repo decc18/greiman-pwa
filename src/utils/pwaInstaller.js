@@ -4,6 +4,7 @@ export class PWAInstaller {
     this.deferredPrompt = null
     this.isInstalled = false
     this.isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
+    this.isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent) || this.isIOS
     this.isStandalone = this.checkStandalone()
     
     // Check if PWA meets installability criteria
@@ -126,9 +127,16 @@ export class PWAInstaller {
     console.log('Install method called')
     console.log('Can install:', this.canInstall())
     console.log('Is iOS:', this.isIOS)
+    console.log('Is Safari:', this.isSafari)
     console.log('Deferred prompt:', this.deferredPrompt)
     
-    // Try direct installation first
+    // For Safari/iOS devices, show instructions immediately
+    if (this.isSafari || this.isIOS) {
+      console.log('Safari/iOS device detected, showing installation instructions')
+      return this.showIOSInstructions()
+    }
+    
+    // Try direct installation for Chromium browsers
     if (this.deferredPrompt && !this.isInstalled) {
       try {
         console.log('Showing install prompt...')
@@ -153,7 +161,7 @@ export class PWAInstaller {
     }
     
     // If no deferred prompt, wait a bit and try to trigger installability
-    if (!this.deferredPrompt && !this.isIOS) {
+    if (!this.deferredPrompt && !this.isSafari && !this.isIOS) {
       console.log('No deferred prompt available, attempting to trigger installability...')
       
       // Wait for potential delayed beforeinstallprompt event
@@ -185,28 +193,29 @@ export class PWAInstaller {
       })
     }
     
-    // For iOS devices, show instructions only as last resort
-    if (this.isIOS) {
-      console.log('iOS device detected, showing installation instructions')
-      return this.showIOSInstructions()
-    }
-    
     // Absolute fallback
     console.log('No installation method available, showing generic instructions')
     return this.showGenericInstructions()
   }
 
   canInstall() {
+    // For Safari/iOS, we can always show installation instructions
+    if (this.isSafari || this.isIOS) {
+      return !this.isInstalled && this.isPWAInstallable
+    }
+    // For other browsers, check for deferred prompt
     return this.deferredPrompt !== null && !this.isInstalled
   }
 
   showIOSInstructions() {
     const instructions = {
-      title: 'Instalar en iOS',
+      title: 'Instalar en Safari/iOS',
       steps: [
-        'Toca el botón de "Compartir" (⬆️) en Safari',
-        'Desplázate y selecciona "Agregar a pantalla de inicio"',
-        'Toca "Agregar" para confirmar la instalación'
+        '1. Toca el botón de "Compartir" (⬆️) en la barra inferior de Safari',
+        '2. Desplázate hacia abajo en el menú de opciones',
+        '3. Selecciona "Agregar a pantalla de inicio"',
+        '4. Personaliza el nombre si deseas y toca "Agregar"',
+        '5. La aplicación aparecerá en tu pantalla de inicio como una app nativa'
       ]
     }
     

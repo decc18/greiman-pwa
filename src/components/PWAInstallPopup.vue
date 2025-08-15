@@ -2,7 +2,7 @@
   <!-- Install Popup -->
   <div 
     class="install-popup-overlay" 
-    v-if="showPopup && (pwaInstaller.canInstall() || pwaInstaller.isIOS)" 
+    v-if="showPopup && (pwaInstaller.canInstall() || pwaInstaller.isIOS || pwaInstaller.isSafari)" 
     @click="closePopup"
     role="dialog"
     aria-labelledby="install-title"
@@ -44,7 +44,7 @@
           <button 
             class="btn-install" 
             @click="installPWA" 
-            :disabled="isInstalling || (!pwaInstaller.canInstall() && !pwaInstaller.isIOS)"
+            :disabled="isInstalling"
           >
             <i class="fa fa-download" v-if="!isInstalling"></i>
             <i class="fa fa-spinner fa-spin" v-if="isInstalling"></i>
@@ -255,12 +255,17 @@ export default {
         return 'Instalando...'
       }
       
+      // Check if we're on Safari/iOS
+      if (pwaInstaller.isSafari || pwaInstaller.isIOS) {
+        return 'Ver Instrucciones'
+      }
+      
       // Check if we can do direct installation
-      if (pwaInstaller.deferredPrompt && !pwaInstaller.isIOS) {
+      if (pwaInstaller.deferredPrompt) {
         return 'Instalar Aplicación'
       }
       
-      // Default text for all cases
+      // Default text for other cases
       return 'Instalar Aplicación'
     },
 
