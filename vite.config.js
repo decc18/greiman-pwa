@@ -9,6 +9,7 @@ export default defineConfig({
     vue(),
     VitePWA({
       registerType: 'autoUpdate',
+      injectRegister: 'script',
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,jpg,jpeg,gif,pdf}'],
         globIgnores: [
@@ -29,9 +30,10 @@ export default defineConfig({
         background_color: '#ffffff',
         display: 'standalone',
         orientation: 'portrait-primary',
-        scope: '/greiman-pwa/',
-        start_url: '/greiman-pwa/',
+        scope: process.env.NODE_ENV === 'production' ? '/greiman-pwa/' : '/',
+        start_url: process.env.NODE_ENV === 'production' ? '/greiman-pwa/' : '/',
         lang: 'es',
+        categories: ['business', 'shopping'],
         icons: [
           {
             src: 'pwa-192x192.png',

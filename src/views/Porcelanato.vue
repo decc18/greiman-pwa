@@ -212,7 +212,7 @@
 
     
     <!-- PWA Install Footer -->
-    <InstallPWAFooter />
+    <!-- <InstallPWAFooter /> -->
     
     <!-- PDF Viewer Modal -->
     <PDFViewer 

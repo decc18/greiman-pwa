@@ -67,7 +67,7 @@
     <!-- <WorksSection /> -->
     
     <!-- PWA Install Footer -->
-    <InstallPWAFooter />
+    <!-- <InstallPWAFooter /> -->
   </div>
 </template>
 

@@ -2,12 +2,20 @@
   <div id="app">
     <!-- Router view para diferentes páginas -->
     <router-view></router-view>
+    
+    <!-- PWA Install Popup -->
+    <PWAInstallPopup />
   </div>
 </template>
 
 <script>
+import PWAInstallPopup from './components/PWAInstallPopup.vue'
+
 export default {
-  name: 'App'
+  name: 'App',
+  components: {
+    PWAInstallPopup
+  }
 }
 </script>
 
