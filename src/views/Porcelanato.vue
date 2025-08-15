@@ -217,7 +217,7 @@
     <!-- PDF Viewer Modal -->
     <PDFViewer 
       :isVisible="showPDFViewer"
-      :pdfPath="'/pdf/porcelanato.pdf'"
+      :pdfPath="`${$router.options.history.base}pdf/porcelanato.pdf`"
       title="Catálogo Porcelanato Calacatta Ossido"
       @close="showPDFViewer = false"
     />
