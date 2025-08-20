@@ -15,7 +15,7 @@
       
       <div class="popup-content">
         <div class="popup-icon">
-          <img src="/pwa-192x192.png" alt="Icono Graiman PWA" />
+          <img :src="pwaIconUrl" alt="Icono Graiman PWA" />
         </div>
         
         <h3 id="install-title" class="popup-title">¡Instala Graiman!</h3>
@@ -114,6 +114,11 @@ export default {
       isInstalling: false,
       pwaInstaller, // Make pwaInstaller available in template
       PWAInstaller // Make PWAInstaller class available in template
+    }
+  },
+  computed: {
+    pwaIconUrl() {
+      return `${import.meta.env.BASE_URL}pwa-192x192.png`
     }
   },
   mounted() {

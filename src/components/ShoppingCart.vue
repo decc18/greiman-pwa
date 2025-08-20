@@ -53,7 +53,7 @@
           >
             <!-- Product Image -->
             <div class="item-image">
-              <img :src="item.image || '/images/porcelanato-ambiente.jpg'" :alt="item.name">
+              <img :src="getProductImage(item)" :alt="item.name">
             </div>
 
             <!-- Product Info -->
@@ -207,6 +207,10 @@ export default {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
       }).format(price)
+    },
+    
+    getProductImage(item) {
+      return item.image || `${import.meta.env.BASE_URL}images/porcelanato-ambiente.jpg`
     },
     
     proceedToCheckout() {

@@ -4,7 +4,7 @@
       <div class="header-content">
         <router-link to="/" class="logo-link">
           <div class="logo-container">
-            <img src="/images/logo.png" alt="Logo" class="logo-img">
+            <img :src="logoUrl" alt="Logo" class="logo-img">
             <div v-if="pageTitle" class="page-title-container">
               <span class="page-title">{{ pageTitle }}</span>
             </div>
@@ -22,6 +22,11 @@ export default {
     pageTitle: {
       type: String,
       default: ''
+    }
+  },
+  computed: {
+    logoUrl() {
+      return `${import.meta.env.BASE_URL}images/logo.png`
     }
   }
 }

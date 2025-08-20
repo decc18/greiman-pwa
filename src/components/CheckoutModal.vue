@@ -100,7 +100,7 @@
                 :key="item.id"
                 class="item-preview"
               >
-                <img :src="item.image || '/images/placeholder.jpg'" :alt="item.name" class="item-thumb">
+                <img :src="getProductImage(item)" :alt="item.name" class="item-thumb">
                 <div class="item-details">
                   <span class="item-name">{{ item.name }}</span>
                   <span class="item-quantity">x{{ item.quantity }}</span>
@@ -366,6 +366,10 @@ export default {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
       }).format(price)
+    },
+    
+    getProductImage(item) {
+      return item.image || `${import.meta.env.BASE_URL}images/product-placeholder.jpg`
     },
     
     getConfettiStyle(index) {

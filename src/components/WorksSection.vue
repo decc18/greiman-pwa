@@ -53,7 +53,7 @@ const works = ref([
     id: 1,
     title: 'E-commerce PWA',
     category: 'PWA Development',
-    image: '/images/work-1.jpg',
+    image: `${import.meta.env.BASE_URL}images/work-1.jpg`,
     description: 'Progressive Web App de e-commerce con carrito de compras offline, notificaciones push y sincronización automática.',
     technologies: ['Vue.js', 'PWA', 'IndexedDB', 'Service Worker']
   },
@@ -61,7 +61,7 @@ const works = ref([
     id: 2,
     title: 'Dashboard Analytics',
     category: 'Web Application',
-    image: '/images/work-2.jpg',
+    image: `${import.meta.env.BASE_URL}images/work-2.jpg`,
     description: 'Dashboard interactivo con gráficos en tiempo real, exportación de datos y modo offline.',
     technologies: ['Vue.js', 'Chart.js', 'Vite', 'PWA']
   },
@@ -69,7 +69,7 @@ const works = ref([
     id: 3,
     title: 'Social Media App',
     category: 'Mobile PWA',
-    image: '/images/work-3.jpg',
+    image: `${import.meta.env.BASE_URL}images/work-3.jpg`,
     description: 'Aplicación social instalable con feed infinito, compartir contenido y notificaciones push.',
     technologies: ['Vue.js', 'PWA', 'Push API', 'Web Share API']
   },
@@ -77,7 +77,7 @@ const works = ref([
     id: 4,
     title: 'Task Manager',
     category: 'Productivity App',
-    image: '/images/work-4.jpg',
+    image: `${import.meta.env.BASE_URL}images/work-4.jpg`,
     description: 'Gestor de tareas con sincronización offline, recordatorios y colaboración en tiempo real.',
     technologies: ['Vue.js', 'IndexedDB', 'Background Sync', 'PWA']
   },
@@ -85,7 +85,7 @@ const works = ref([
     id: 5,
     title: 'Restaurant Menu',
     category: 'Business PWA',
-    image: '/images/work-5.jpg',
+    image: `${import.meta.env.BASE_URL}images/work-5.jpg`,
     description: 'Menú digital interactivo con pedidos online, modo oscuro y funcionamiento sin conexión.',
     technologies: ['Vue.js', 'PWA', 'QR Codes', 'Payment API']
   },
@@ -93,7 +93,7 @@ const works = ref([
     id: 6,
     title: 'Weather App',
     category: 'Utility PWA',
-    image: '/images/work-6.jpg',
+    image: `${import.meta.env.BASE_URL}images/work-6.jpg`,
     description: 'Aplicación del clima con geolocalización, pronóstico offline y notificaciones de alertas.',
     technologies: ['Vue.js', 'Geolocation API', 'PWA', 'Background Sync']
   }

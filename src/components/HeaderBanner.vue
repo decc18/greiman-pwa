@@ -3,7 +3,7 @@
     <header id="header">
       <div class="header-content clearfix">
         <router-link class="logo" to="/">
-          <img src="/images/logo.png" alt="graiman PWA Logo">
+          <img :src="logoUrl" alt="graiman PWA Logo">
         </router-link>
         <nav class="navigation" role="navigation">
           <ul class="primary-nav">
@@ -40,7 +40,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, computed } from 'vue'
 
 // Props
 defineProps({
@@ -94,6 +94,9 @@ async function installApp() {
     installPrompt.value = null
   }
 }
+
+// Computed properties
+const logoUrl = computed(() => `${import.meta.env.BASE_URL}images/logo.png`)
 
 onMounted(() => {
   // Detectar si ya está instalada como PWA
