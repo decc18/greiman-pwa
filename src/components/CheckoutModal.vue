@@ -67,7 +67,7 @@
         </div>
         
         <div class="success-actions">
-          <button @click="closeModal" class="btn btn-primary continue-btn">
+          <button @click="forceClose" class="btn btn-primary continue-btn">
             <i class="fa fa-home me-2"></i>
             Continuar Comprando
           </button>
@@ -85,8 +85,8 @@
             <i class="fa fa-credit-card me-2"></i>
             Finalizar Compra
           </h2>
-          <button @click.stop="closeModal" class="close-btn" type="button">
-            <i class="fa fa-times" @click.stop="closeModal"></i>
+          <button @click.stop="handleCloseClick" class="close-btn" type="button">
+            <i class="fa fa-times" @click.stop="handleCloseClick"></i>
           </button>
         </div>
         
@@ -210,7 +210,10 @@ export default {
   watch: {
     isVisible(newVal) {
       if (newVal) {
-        this.resetModal()
+        // Solo resetear si no estamos mostrando éxito
+        if (!this.showSuccess) {
+          this.resetModal()
+        }
         // Agregar listener para tecla Escape
         document.addEventListener('keydown', this.handleEscKey)
       } else {
@@ -243,11 +246,34 @@ export default {
       // Remover listener de Escape si existe
       document.removeEventListener('keydown', this.handleEscKey)
       this.$emit('close')
+      
+      // Solo resetear si no estamos mostrando el estado de éxito
+      // Si estamos en éxito, dejar que el usuario vea la animación
+      if (!this.showSuccess) {
+        this.resetModal()
+      }
+    },
+    
+    forceClose() {
+      // Método para cerrar forzadamente y resetear todo
+      console.log('forceClose ejecutado - reseteando modal completamente')
+      document.removeEventListener('keydown', this.handleEscKey)
+      this.$emit('close')
       this.resetModal()
     },
     
     handleEscKey(event) {
       if (event.key === 'Escape' && this.isVisible) {
+        this.handleCloseClick()
+      }
+    },
+    
+    handleCloseClick() {
+      // Si estamos mostrando éxito, usar forceClose
+      // Si no, usar closeModal normal
+      if (this.showSuccess) {
+        this.forceClose()
+      } else {
         this.closeModal()
       }
     },

@@ -242,11 +242,15 @@ export default {
     },
     
     onPaymentSuccess() {
-      // Limpiar carrito después del pago exitoso
+      // NO cerrar inmediatamente - dejar que el usuario vea la animación de éxito
+      // Solo limpiar el carrito y ocultar el panel lateral
       cartStore.clearCart()
       cartStore.hideCart()
       this.userTriggeredCheckout = false // Resetear flag
-      this.closeCheckoutModal()
+      
+      // El modal se cerrará cuando el usuario haga clic en "Continuar Comprando"
+      // No llamar closeCheckoutModal() aquí
+      console.log('Pago exitoso - carrito limpiado, esperando que usuario cierre modal')
     },
     
     showCheckoutModal() {
