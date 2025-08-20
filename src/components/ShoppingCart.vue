@@ -53,7 +53,7 @@
           >
             <!-- Product Image -->
             <div class="item-image">
-              <img :src="item.image || '/images/placeholder.jpg'" :alt="item.name">
+              <img :src="item.image || '/images/porcelanato-ambiente.jpg'" :alt="item.name">
             </div>
 
             <!-- Product Info -->
