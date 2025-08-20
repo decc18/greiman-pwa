@@ -884,6 +884,9 @@ export default {
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .format-card:hover {
@@ -892,27 +895,27 @@ export default {
 }
 
 .format-large {
-  height: 120px;
+  height: 120px; /* Formato más grande: 120x120 */
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
 }
 
 .format-medium {
-  height: 100px;
+  height: 100px; /* Formato mediano: 60x120 */
   background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
 }
 
 .format-small {
-  height: 80px;
+  height: 80px; /* Formato pequeño: 29.5x59 */
   background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
 }
 
 .format-mini {
-  height: 60px;
+  height: 60px; /* Formato mini: 19.5x19.5 (mosaico) */
   background: linear-gradient(135deg, #fff3e0 0%, #ffcc02 30%);
 }
 
 .format-strip {
-  height: 40px;
+  height: 40px; /* Formato strip: 7x29 (listello) */
   background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);
 }
 
@@ -983,12 +986,24 @@ export default {
     padding: 0.5rem 0.25rem;
   }
   
+  /* Agregar margen lateral en móvil para tablas */
+  .table-responsive {
+    margin: 0 1rem;
+  }
+  
   .formats-visual {
     padding: 1rem;
+    margin: 0 1rem;
   }
   
   .format-card {
     margin-bottom: 1rem;
+  }
+  
+  /* Títulos de sección con margen en móvil */
+  .spec-section-title {
+    margin-left: 1rem;
+    margin-right: 1rem;
   }
   
   .thickness-bars {

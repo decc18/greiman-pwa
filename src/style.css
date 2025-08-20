@@ -421,6 +421,10 @@ html::-webkit-scrollbar-thumb:hover {
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   height: 100%;
+  min-height: 200px; /* Altura mínima consistente */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .spec-card h4 {
@@ -644,11 +648,15 @@ html {
   text-align: center;
   padding: 1.5rem;
   height: 100%;
+  min-height: 200px; /* Altura mínima consistente */
   background: white;
   border-radius: 15px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
   margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .benefit-card:hover {

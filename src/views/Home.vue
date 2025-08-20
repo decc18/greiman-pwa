@@ -151,7 +151,10 @@ export default {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
   width: 400px;
+  min-height: 450px; /* Altura mínima consistente */
   flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .product-card:hover {
@@ -191,6 +194,10 @@ export default {
 .card-content {
   padding: 2rem;
   text-align: center;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .card-title {
