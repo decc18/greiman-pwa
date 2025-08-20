@@ -153,7 +153,7 @@
 
     <!-- Checkout Modal -->
     <CheckoutModal
-      :is-visible="showCheckoutModal"
+      :is-visible="showCheckoutModal && userTriggeredCheckout"
       :cart-items="cartStore.items"
       :total-amount="cartStore.total"
       :total-items="cartStore.totalItems"
@@ -175,7 +175,8 @@ export default {
   data() {
     return {
       cartStore,
-      showCheckoutModal: false
+      showCheckoutModal: false,
+      userTriggeredCheckout: false // Flag para asegurar que solo se abra por acción del usuario
     }
   },
   methods: {
@@ -215,8 +216,13 @@ export default {
         return
       }
       
+      // Marcar que el checkout fue iniciado por el usuario
+      this.userTriggeredCheckout = true
+      
       // Mostrar el modal de checkout directamente
       this.showCheckoutModal = true
+      console.log('Checkout iniciado por acción del usuario')
+      
       // Ocultar el panel del carrito después de un pequeño delay
       setTimeout(() => {
         cartStore.hideCart()
@@ -226,6 +232,7 @@ export default {
     closeCheckoutModal() {
       console.log('closeCheckoutModal ejecutado')
       this.showCheckoutModal = false
+      this.userTriggeredCheckout = false // Resetear flag
       // No reabrir automáticamente el carrito cuando se cierra el checkout
       // El usuario puede reoprir manualmente si lo desea
     },
@@ -234,6 +241,7 @@ export default {
       // Limpiar carrito después del pago exitoso
       cartStore.clearCart()
       cartStore.hideCart()
+      this.userTriggeredCheckout = false // Resetear flag
       this.closeCheckoutModal()
     },
     

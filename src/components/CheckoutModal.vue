@@ -190,7 +190,18 @@ export default {
   },
   computed: {
     shouldShowModal() {
-      return this.isVisible && this.cartItems && this.cartItems.length > 0
+      const hasItems = this.cartItems && this.cartItems.length > 0
+      const isVisibleProp = this.isVisible
+      const shouldShow = isVisibleProp && hasItems
+      
+      console.log('CheckoutModal shouldShowModal:', {
+        isVisible: isVisibleProp,
+        hasItems: hasItems,
+        itemCount: this.cartItems ? this.cartItems.length : 0,
+        shouldShow: shouldShow
+      })
+      
+      return shouldShow
     },
     hasValidItems() {
       return this.cartItems && this.cartItems.length > 0 && this.totalAmount > 0

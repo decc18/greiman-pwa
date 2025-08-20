@@ -149,6 +149,8 @@ export default {
     addToCart() {
       if (!this.productData || this.stockQuantity <= 0) return
       
+      console.log('Agregando producto al carrito (NO debe abrir checkout automáticamente)')
+      
       // Crear objeto del producto para el carrito
       const cartItem = {
         id: this.productData.id,
@@ -163,7 +165,7 @@ export default {
       // Agregar al carrito
       cartStore.addItem(cartItem)
       
-      // Mostrar el carrito
+      // SOLO mostrar el panel lateral del carrito (NO el modal de checkout)
       cartStore.showCart()
       
       // Resetear cantidad
@@ -171,6 +173,8 @@ export default {
       
       // Emitir evento
       this.$emit('added-to-cart', cartItem)
+      
+      console.log('Producto agregado correctamente, solo se mostró el panel lateral del carrito')
     },
     
     formatPrice(price) {
