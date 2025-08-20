@@ -90,6 +90,8 @@
                 :stock-quantity="productData?.inventory.quantity"
                 :stock-unit="productData?.inventory.unit"
                 :features="productData?.features || []"
+                :product-data="productData"
+                @added-to-cart="onAddedToCart"
               />
               
               <div class="product-actions">
@@ -376,6 +378,12 @@ export default {
       // Abrir WhatsApp con mensaje personalizado para porcelanato
       const whatsappUrl = 'https://api.whatsapp.com/send?phone=593997585127&text=%C2%A1Hola%20Graiman!%20Vi%20sus%20productos%20en%20la%20web%20y%20estoy%20interesado/a.%20Quiero%20recibir%20asesor%C3%ADa.'
       window.open(whatsappUrl, '_blank')
+    },
+    
+    onAddedToCart(cartItem) {
+      // Mostrar notificación o feedback cuando se agrega al carrito
+      console.log('Producto agregado al carrito:', cartItem)
+      // Aquí podrías mostrar una notificación toast o similar
     }
   },
   mounted() {

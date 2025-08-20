@@ -26,10 +26,50 @@
         {{ feature }}
       </span>
     </div>
+    
+    <!-- Add to Cart Section -->
+    <div class="cart-section" v-if="productData">
+      <div class="quantity-selector">
+        <label for="quantity">Cantidad:</label>
+        <div class="quantity-controls">
+          <button @click="decreaseQuantity" :disabled="quantity <= 1" class="qty-btn">
+            <i class="fa fa-minus"></i>
+          </button>
+          <input 
+            v-model.number="quantity" 
+            type="number" 
+            min="1" 
+            :max="stockQuantity"
+            class="quantity-input"
+            id="quantity"
+          >
+          <button @click="increaseQuantity" :disabled="quantity >= stockQuantity" class="qty-btn">
+            <i class="fa fa-plus"></i>
+          </button>
+        </div>
+      </div>
+      
+      <button 
+        @click="addToCart"
+        :disabled="stockQuantity <= 0"
+        class="add-to-cart-btn"
+        :class="{ 'out-of-stock': stockQuantity <= 0 }"
+      >
+        <i class="fa fa-shopping-cart me-2"></i>
+        <span v-if="stockQuantity > 0">Agregar al Carrito</span>
+        <span v-else>Producto Agotado</span>
+      </button>
+      
+      <div class="subtotal" v-if="quantity > 1">
+        <span>Subtotal: ${{ formatPrice(currentPrice * quantity) }}</span>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+import { cartStore } from '../stores/cartStore.js'
+
 export default {
   name: 'ProductPricing',
   props: {
@@ -60,6 +100,16 @@ export default {
     features: {
       type: Array,
       default: () => []
+    },
+    productData: {
+      type: Object,
+      default: null
+    }
+  },
+  data() {
+    return {
+      quantity: 1,
+      cartStore
     }
   },
   computed: {
@@ -81,6 +131,53 @@ export default {
       if (this.stockQuantity > 10) return 'En stock'
       if (this.stockQuantity > 0) return 'Pocas unidades'
       return 'Agotado'
+    }
+  },
+  methods: {
+    increaseQuantity() {
+      if (this.quantity < this.stockQuantity) {
+        this.quantity += 1
+      }
+    },
+    
+    decreaseQuantity() {
+      if (this.quantity > 1) {
+        this.quantity -= 1
+      }
+    },
+    
+    addToCart() {
+      if (!this.productData || this.stockQuantity <= 0) return
+      
+      // Crear objeto del producto para el carrito
+      const cartItem = {
+        id: this.productData.id,
+        name: this.productData.name,
+        category: this.productData.category,
+        currentPrice: parseFloat(this.currentPrice),
+        originalPrice: this.originalPrice ? parseFloat(this.originalPrice) : null,
+        image: this.productData.image,
+        quantity: this.quantity
+      }
+      
+      // Agregar al carrito
+      cartStore.addItem(cartItem)
+      
+      // Mostrar el carrito
+      cartStore.showCart()
+      
+      // Resetear cantidad
+      this.quantity = 1
+      
+      // Emitir evento
+      this.$emit('added-to-cart', cartItem)
+    },
+    
+    formatPrice(price) {
+      return new Intl.NumberFormat('es-EC', {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      }).format(price)
     }
   }
 }
@@ -193,6 +290,112 @@ export default {
   border-radius: 15px;
   font-size: 0.85rem;
   font-weight: 500;
+}
+
+/* Cart Section Styles */
+.cart-section {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #dee2e6;
+}
+
+.quantity-selector {
+  margin-bottom: 1rem;
+}
+
+.quantity-selector label {
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  width: fit-content;
+  border: 2px solid var(--primary-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.qty-btn {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.qty-btn:hover:not(:disabled) {
+  background: var(--primary-dark, #0056b3);
+}
+
+.qty-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.quantity-input {
+  border: none;
+  background: white;
+  padding: 10px 15px;
+  text-align: center;
+  font-weight: 600;
+  width: 60px;
+  font-size: 1rem;
+}
+
+.quantity-input:focus {
+  outline: none;
+  background: #f8f9fa;
+}
+
+.add-to-cart-btn {
+  width: 100%;
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark, #0056b3) 100%);
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+
+.add-to-cart-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+}
+
+.add-to-cart-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.add-to-cart-btn.out-of-stock {
+  background: #6c757d;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.add-to-cart-btn:disabled {
+  opacity: 0.6;
+  transform: none;
+  box-shadow: none;
+}
+
+.subtotal {
+  text-align: center;
+  font-weight: 600;
+  color: var(--primary-color);
+  font-size: 1.1rem;
+  margin-top: 0.5rem;
 }
 
 /* Responsive Design */
