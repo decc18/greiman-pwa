@@ -177,37 +177,241 @@
       <div class="container">
         <div class="row">
           <div class="col-12 text-center mb-5">
-            <h2 class="product-title">Especificaciones Técnicas</h2>
+            <h2 class="product-title">Información Técnica</h2>
+            <p class="text-muted">Especificaciones detalladas de empaque y formatos disponibles</p>
           </div>
         </div>
+        
+        <!-- Especificaciones Empaque Cerámico -->
+        <div class="row mb-5">
+          <div class="col-12">
+            <h3 class="spec-section-title">
+              <i class="fa fa-cube me-2"></i>
+              Especificaciones Empaque Cerámico
+            </h3>
+            <div class="table-responsive">
+              <table class="table table-striped spec-table">
+                <thead>
+                  <tr>
+                    <th>Formato</th>
+                    <th>Dimensión de Fabricación</th>
+                    <th>Espesor MM</th>
+                    <th>Piezas x Caja</th>
+                    <th>m² x Caja</th>
+                    <th>m² x Pallet</th>
+                    <th>Cajas x Pallet</th>
+                    <th>Kg x Pallet</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>23.5x59</strong></td>
+                    <td>233x590</td>
+                    <td>7.5</td>
+                    <td>11</td>
+                    <td>1.53</td>
+                    <td>111.80</td>
+                    <td>50</td>
+                    <td>1800</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Especificaciones Empaque Porcelanato -->
+        <div class="row mb-5">
+          <div class="col-12">
+            <h3 class="spec-section-title">
+              <i class="fa fa-th-large me-2"></i>
+              Especificaciones Empaque Porcelanato
+            </h3>
+            <div class="table-responsive">
+              <table class="table table-striped spec-table">
+                <thead>
+                  <tr>
+                    <th>Formato</th>
+                    <th>Dimensión de Fabricación</th>
+                    <th>Espesor MM</th>
+                    <th>Piezas x Caja</th>
+                    <th>m² x Caja</th>
+                    <th>m² x Pallet</th>
+                    <th>Cajas x Pallet</th>
+                    <th>Kg x Pallet</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>120x120</strong></td>
+                    <td>1200x1200</td>
+                    <td>9</td>
+                    <td>1</td>
+                    <td>1.44</td>
+                    <td>57.60</td>
+                    <td>40</td>
+                    <td>1965</td>
+                  </tr>
+                  <tr>
+                    <td><strong>60x120</strong></td>
+                    <td>600x1200</td>
+                    <td>7.4</td>
+                    <td>4</td>
+                    <td>2.88</td>
+                    <td>69.12</td>
+                    <td>24</td>
+                    <td>1107</td>
+                  </tr>
+                  <tr>
+                    <td><strong>30x60</strong></td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                  </tr>
+                  <tr>
+                    <td><strong>15.5x19.5</strong></td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                  </tr>
+                  <tr>
+                    <td><strong>7x29</strong></td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td>-</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Formatos y Espesores de Colección -->
         <div class="row">
+          <div class="col-12">
+            <h3 class="spec-section-title">
+              <i class="fa fa-ruler-combined me-2"></i>
+              Formatos y Espesores de Colección
+            </h3>
+            <div class="formats-visual">
+              <div class="row align-items-end justify-content-center">
+                <div class="col-md-2 col-sm-4 col-6 mb-3">
+                  <div class="format-card format-large">
+                    <div class="format-size">120x120</div>
+                    <div class="format-specs">
+                      <small>9mm espesor</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2 col-sm-4 col-6 mb-3">
+                  <div class="format-card format-medium">
+                    <div class="format-size">60x120</div>
+                    <div class="format-specs">
+                      <small>7.4mm espesor</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2 col-sm-4 col-6 mb-3">
+                  <div class="format-card format-small">
+                    <div class="format-size">29.5x59</div>
+                    <div class="format-specs">
+                      <small>Disponible</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2 col-sm-4 col-6 mb-3">
+                  <div class="format-card format-mini">
+                    <div class="format-size">19.5x19.5</div>
+                    <div class="format-specs">
+                      <small>Mosaico</small>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-2 col-sm-4 col-6 mb-3">
+                  <div class="format-card format-strip">
+                    <div class="format-size">7x29</div>
+                    <div class="format-specs">
+                      <small>Listello</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Thickness indicator -->
+              <div class="thickness-indicator mt-4">
+                <h5>Espesores Disponibles:</h5>
+                <div class="thickness-bars">
+                  <div class="thickness-bar">
+                    <span class="thickness-label">7.4mm</span>
+                    <div class="bar bar-thin"></div>
+                  </div>
+                  <div class="thickness-bar">
+                    <span class="thickness-label">7.5mm</span>
+                    <div class="bar bar-thin"></div>
+                  </div>
+                  <div class="thickness-bar">
+                    <span class="thickness-label">9mm</span>
+                    <div class="bar bar-thick"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Additional Technical Info -->
+        <div class="row mt-5">
           <div class="col-md-4 mb-4">
             <div class="spec-card">
-              <h4>Medidas</h4>
+              <h4>
+                <i class="fa fa-shipping-fast me-2"></i>
+                Logística
+              </h4>
               <ul>
-                <li>60x120 cm</li>
-                <li>80x80 cm</li>
-                <li>60x60 cm</li>
+                <li>Embalaje optimizado por pallet</li>
+                <li>Peso máximo: 1965 kg/pallet</li>
+                <li>Área máxima: 111.80 m²/pallet</li>
+                <li>Protección anti-humedad</li>
               </ul>
             </div>
           </div>
           <div class="col-md-4 mb-4">
             <div class="spec-card">
-              <h4>Acabados</h4>
+              <h4>
+                <i class="fa fa-tools me-2"></i>
+                Instalación
+              </h4>
               <ul>
-                <li>Natural</li>
-                <li>Pulido</li>
-                <li>Antideslizante</li>
+                <li>Adhesivo cerámico clase C2</li>
+                <li>Juntas mínimas 2-3mm</li>
+                <li>Superficie nivelada ±3mm</li>
+                <li>Corte con disco diamantado</li>
               </ul>
             </div>
           </div>
           <div class="col-md-4 mb-4">
             <div class="spec-card">
-              <h4>Aplicaciones</h4>
+              <h4>
+                <i class="fa fa-certificate me-2"></i>
+                Calidad
+              </h4>
               <ul>
-                <li>Pisos interiores</li>
-                <li>Paredes</li>
-                <li>Exteriores</li>
+                <li>Norma ISO 13006</li>
+                <li>Absorción agua ≤0.5%</li>
+                <li>Resistencia flexión >35 N/mm²</li>
+                <li>Antideslizante R10-R11</li>
               </ul>
             </div>
           </div>
@@ -613,5 +817,210 @@ export default {
   .progress-bar:hover {
     height: 10px;
   }
-}</style>
+}
+
+/* Estilos para sección de información técnica */
+.spec-section-title {
+  color: var(--primary-color);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-xl);
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.spec-table {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.spec-table thead {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color, #00b4d8) 100%);
+}
+
+.spec-table thead th {
+  color: white;
+  font-weight: var(--font-weight-semibold);
+  padding: 1rem 0.75rem;
+  border: none;
+  font-size: var(--font-size-sm);
+  text-align: center;
+}
+
+.spec-table tbody td {
+  padding: 0.75rem;
+  vertical-align: middle;
+  text-align: center;
+  font-size: var(--font-size-sm);
+  border-color: #dee2e6;
+}
+
+.spec-table tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.spec-table tbody td:first-child {
+  font-weight: var(--font-weight-bold);
+  color: var(--primary-color);
+}
+
+/* Formatos visuales */
+.formats-visual {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 15px;
+  margin-top: 1rem;
+}
+
+.format-card {
+  background: white;
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
+  padding: 1rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.format-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 130, 150, 0.2);
+}
+
+.format-large {
+  height: 120px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.format-medium {
+  height: 100px;
+  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+}
+
+.format-small {
+  height: 80px;
+  background: linear-gradient(135deg, #e8f5e8 0%, #c8e6c9 100%);
+}
+
+.format-mini {
+  height: 60px;
+  background: linear-gradient(135deg, #fff3e0 0%, #ffcc02 30%);
+}
+
+.format-strip {
+  height: 40px;
+  background: linear-gradient(135deg, #fce4ec 0%, #f8bbd9 100%);
+}
+
+.format-size {
+  font-weight: var(--font-weight-bold);
+  color: var(--primary-color);
+  font-size: var(--font-size-lg);
+  margin-bottom: 0.25rem;
+}
+
+.format-specs {
+  color: #666;
+  font-size: var(--font-size-xs);
+}
+
+/* Indicador de espesores */
+.thickness-indicator {
+  text-align: center;
+  padding: 1.5rem;
+  background: white;
+  border-radius: 10px;
+  border: 1px solid #dee2e6;
+}
+
+.thickness-bars {
+  display: flex;
+  justify-content: center;
+  align-items: end;
+  gap: 2rem;
+  margin-top: 1rem;
+}
+
+.thickness-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.thickness-label {
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-sm);
+  color: var(--primary-color);
+}
+
+.bar {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color, #00b4d8));
+  border-radius: 4px;
+  width: 40px;
+}
+
+.bar-thin {
+  height: 15px;
+}
+
+.bar-thick {
+  height: 25px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .spec-table {
+    font-size: var(--font-size-xs);
+  }
+  
+  .spec-table thead th,
+  .spec-table tbody td {
+    padding: 0.5rem 0.25rem;
+  }
+  
+  .formats-visual {
+    padding: 1rem;
+  }
+  
+  .format-card {
+    margin-bottom: 1rem;
+  }
+  
+  .thickness-bars {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .thickness-bar {
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 200px;
+    margin: 0 auto;
+  }
+  
+  .bar {
+    width: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .spec-section-title {
+    font-size: var(--font-size-lg);
+  }
+  
+  .table-responsive {
+    font-size: var(--font-size-xs);
+  }
+  
+  .format-size {
+    font-size: var(--font-size-base);
+  }
+}
+</style>
 
