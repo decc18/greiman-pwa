@@ -1,0 +1,155 @@
+/* ===========================
+   ESTÁNDARES DE TIPOGRAFÍA
+   ========================== */
+
+:root {
+  /* TAMAÑOS BASE */
+  --font-size-xs: 0.9rem;      /* 14.4px - Textos muy pequeños */
+  --font-size-sm: 1rem;        /* 16px - Texto pequeño */
+  --font-size-base: 1.125rem;  /* 18px - Texto base/cuerpo */
+  --font-size-md: 1.25rem;     /* 20px - Texto mediano */
+  --font-size-lg: 1.5rem;      /* 24px - Texto grande */
+  --font-size-xl: 1.75rem;     /* 28px - Subtítulos */
+  --font-size-2xl: 2.25rem;    /* 36px - Títulos principales */
+  --font-size-3xl: 2.75rem;    /* 44px - Títulos destacados */
+  --font-size-4xl: 3.5rem;     /* 56px - Títulos hero */
+  
+  /* PESOS DE FUENTE */
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  --font-weight-black: 900;
+  
+  /* ALTURAS DE LÍNEA */
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.75;
+  
+  /* ESPACIADO DE LETRAS */
+  --letter-spacing-tight: -0.025em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.025em;
+  --letter-spacing-wider: 0.1em;
+}
+
+/* ===========================
+   CLASES UTILITARIAS
+   ========================== */
+
+/* Títulos principales */
+.text-hero {
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+}
+
+.text-title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+}
+
+.text-subtitle {
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-normal);
+}
+
+/* Contenido */
+.text-lead {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-relaxed);
+}
+
+.text-body {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+.text-body-md {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+.text-small {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+.text-xs {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-normal);
+  line-height: var(--line-height-normal);
+}
+
+/* Precios */
+.text-price-main {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+}
+
+.text-price-secondary {
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-medium);
+  line-height: var(--line-height-tight);
+}
+
+/* Botones */
+.text-button {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.text-button-lg {
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.text-button-sm {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+/* Categorías y etiquetas */
+.text-category {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+}
+
+/* ===========================
+   RESPONSIVE ADJUSTMENTS
+   ========================== */
+
+@media (max-width: 768px) {
+  :root {
+    --font-size-4xl: 2.5rem;     /* 40px en móvil */
+    --font-size-3xl: 2.25rem;    /* 36px en móvil */
+    --font-size-2xl: 1.875rem;   /* 30px en móvil */
+    --font-size-xl: 1.5rem;      /* 24px en móvil */
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --font-size-4xl: 2rem;       /* 32px en móvil pequeño */
+    --font-size-3xl: 1.875rem;   /* 30px en móvil pequeño */
+    --font-size-2xl: 1.625rem;   /* 26px en móvil pequeño */
+  }
+}

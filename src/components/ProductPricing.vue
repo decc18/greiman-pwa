@@ -208,16 +208,16 @@ export default {
 }
 
 .price-current {
-  font-size: 3rem;
-  font-weight: 700;
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
   color: var(--primary-color);
-  line-height: 1;
+  line-height: var(--line-height-tight);
 }
 
 .price-unit {
-  font-size: 1.5rem;
+  font-size: var(--font-size-lg);
   color: var(--text-secondary, #666);
-  font-weight: 400;
+  font-weight: var(--font-weight-normal);
 }
 
 .stock-info {
@@ -228,8 +228,8 @@ export default {
 }
 
 .stock-status {
-  font-size: 1.3rem;
-  font-weight: 600;
+  font-size: var(--font-size-md);
+  font-weight: var(--font-weight-semibold);
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -248,7 +248,7 @@ export default {
 }
 
 .stock-quantity {
-  font-size: 1.3rem;
+  font-size: var(--font-size-base);
   color: var(--text-secondary, #666);
   margin-top: 0.25rem;
 }
@@ -263,7 +263,7 @@ export default {
 .price-original {
   color: #999;
   text-decoration: line-through;
-  font-size: 1.3rem;
+  font-size: var(--font-size-md);
 }
 
 .discount-badge {
@@ -271,8 +271,8 @@ export default {
   color: white;
   padding: 0.25rem 0.5rem;
   border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
 }
 
 .features-list {
@@ -288,8 +288,8 @@ export default {
   color: white;
   padding: 0.3rem 0.75rem;
   border-radius: 15px;
-  font-size: 0.85rem;
-  font-weight: 500;
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
 }
 
 /* Cart Section Styles */
@@ -304,10 +304,11 @@ export default {
 }
 
 .quantity-selector label {
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   color: #333;
   margin-bottom: 0.5rem;
   display: block;
+  font-size: var(--font-size-base);
 }
 
 .quantity-controls {
@@ -327,7 +328,7 @@ export default {
   padding: 10px 15px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-size: 0.9rem;
+  font-size: var(--font-size-base);
 }
 
 .qty-btn:hover:not(:disabled) {
@@ -344,9 +345,20 @@ export default {
   background: white;
   padding: 10px 15px;
   text-align: center;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   width: 60px;
-  font-size: 1rem;
+  font-size: var(--font-size-base);
+  border-radius: 0;
+  -webkit-appearance: none;
+  -moz-appearance: textfield;
+  appearance: none;
+}
+
+.quantity-input::-webkit-outer-spin-button,
+.quantity-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  appearance: none;
+  margin: 0;
 }
 
 .quantity-input:focus {
@@ -356,22 +368,23 @@ export default {
 
 .add-to-cart-btn {
   width: 100%;
-  background: linear-gradient(135deg, var(--primary-color) 0%, var(--primary-dark, #0056b3) 100%);
+  background: var(--primary-color);
   color: white;
   border: none;
   padding: 15px 20px;
   border-radius: 10px;
-  font-weight: 600;
-  font-size: 1.1rem;
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-md);
   cursor: pointer;
   transition: all 0.3s ease;
   margin-bottom: 0.5rem;
-  box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(0, 130, 150, 0.3);
 }
 
 .add-to-cart-btn:hover:not(:disabled) {
+  background: var(--secondary-color);
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
+  box-shadow: 0 6px 20px rgba(0, 130, 150, 0.4);
 }
 
 .add-to-cart-btn:active:not(:disabled) {
@@ -392,39 +405,44 @@ export default {
 
 .subtotal {
   text-align: center;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   color: var(--primary-color);
-  font-size: 1.1rem;
+  font-size: var(--font-size-md);
   margin-top: 0.5rem;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
   .pricing-header {
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: flex-start;
-    gap: 1rem;
+    gap: 0.5rem;
   }
   
   .stock-info {
-    align-items: flex-start;
-    text-align: left;
+    align-items: flex-end;
+    text-align: right;
   }
   
   .price-current {
-    font-size: 2.5rem;
+    font-size: var(--font-size-3xl);
   }
   
   .price-unit {
-    font-size: 1.3rem;
+    font-size: var(--font-size-base);
   }
   
   .stock-status {
-    font-size: 1.5rem;
+    font-size: var(--font-size-base);
+  }
+  
+  .stock-quantity {
+    font-size: var(--font-size-sm);
   }
   
   .feature-item {
-    font-size: 1rem;
+    font-size: var(--font-size-base);
     padding: 0.25rem 0.6rem;
   }
 }
@@ -434,12 +452,38 @@ export default {
     padding: 1rem;
   }
   
+  .pricing-header {
+    gap: 0.25rem;
+  }
+  
   .price-current {
-    font-size: 2rem;
+    font-size: var(--font-size-2xl);
   }
   
   .price-unit {
-    font-size: 1rem;
+    font-size: var(--font-size-sm);
+  }
+  
+  .stock-status {
+    font-size: var(--font-size-sm);
+  }
+  
+  .stock-quantity {
+    font-size: var(--font-size-xs);
+  }
+  
+  .quantity-controls {
+    justify-content: center;
+  }
+  
+  .quantity-input {
+    width: 50px;
+    padding: 8px 12px;
+  }
+  
+  .qty-btn {
+    padding: 8px 12px;
+    min-width: 40px;
   }
 }
 </style>

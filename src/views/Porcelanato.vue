@@ -494,7 +494,7 @@ export default {
   cursor: pointer;
   transition: all 0.3s ease;
   color: #333;
-  font-size: 16px;
+  font-size: var(--font-size-sm);
 }
 
 .play-pause-btn:hover {
@@ -510,8 +510,8 @@ export default {
   cursor: pointer;
   transition: all 0.3s ease;
   color: #333;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
 }
 
 .mute-btn:hover {
@@ -520,8 +520,8 @@ export default {
 
 .time-display {
   color: white;
-  font-size: 14px;
-  font-weight: 500;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
   min-width: 80px;
   text-align: right;
   text-shadow: 0 1px 2px rgba(0,0,0,0.8);
@@ -593,16 +593,16 @@ export default {
   .play-pause-btn {
     width: 36px;
     height: 36px;
-    font-size: 14px;
+    font-size: var(--font-size-xs);
   }
   
   .mute-btn {
     padding: 6px 10px;
-    font-size: 12px;
+    font-size: var(--font-size-xs);
   }
   
   .time-display {
-    font-size: 12px;
+    font-size: var(--font-size-xs);
     min-width: 70px;
   }
   

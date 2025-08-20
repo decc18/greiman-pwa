@@ -267,7 +267,7 @@ export default {
   border-radius: 50%;
   width: 60px;
   height: 60px;
-  font-size: 20px;
+  font-size: var(--font-size-md);
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
   transition: all 0.3s ease;
@@ -297,8 +297,8 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 12px;
-  font-weight: bold;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
 }
 
 /* Cart Overlay */
@@ -340,7 +340,7 @@ export default {
     right: 15px;
     width: 55px;
     height: 55px;
-    font-size: 18px;
+    font-size: var(--font-size-base);
     z-index: 1002;
   }
   
@@ -362,13 +362,13 @@ export default {
     right: 10px;
     width: 50px;
     height: 50px;
-    font-size: 16px;
+    font-size: var(--font-size-sm);
   }
   
   .cart-badge {
     width: 20px;
     height: 20px;
-    font-size: 10px;
+    font-size: var(--font-size-xs);
     top: -3px;
     right: -3px;
   }
@@ -386,15 +386,15 @@ export default {
 
 .cart-title {
   margin: 0;
-  font-size: 1.25rem;
-  font-weight: 600;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
   color: #333;
 }
 
 .cart-close-btn {
   background: none;
   border: none;
-  font-size: 20px;
+  font-size: var(--font-size-md);
   cursor: pointer;
   color: #666;
   padding: 8px;
@@ -422,7 +422,7 @@ export default {
 }
 
 .empty-cart-icon {
-  font-size: 48px;
+  font-size: var(--font-size-4xl);
   margin-bottom: 20px;
   opacity: 0.5;
 }
@@ -430,6 +430,13 @@ export default {
 .empty-cart h4 {
   margin-bottom: 10px;
   color: #495057;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-semibold);
+}
+
+.empty-cart p {
+  font-size: var(--font-size-base);
+  color: #6c757d;
 }
 
 /* Cart Items */
@@ -513,15 +520,15 @@ export default {
 }
 
 .item-name {
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
   margin: 0 0 4px 0;
   color: #333;
-  line-height: 1.3;
+  line-height: var(--line-height-tight);
 }
 
 .item-category {
-  font-size: 0.8rem;
+  font-size: var(--font-size-sm);
   color: #6c757d;
   margin: 0 0 6px 0;
 }
@@ -533,13 +540,13 @@ export default {
 }
 
 .current-price {
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   color: var(--primary-color, #007bff);
-  font-size: 0.9rem;
+  font-size: var(--font-size-base);
 }
 
 .original-price {
-  font-size: 0.8rem;
+  font-size: var(--font-size-sm);
   color: #6c757d;
   text-decoration: line-through;
 }
@@ -566,7 +573,7 @@ export default {
   padding: 6px 10px;
   cursor: pointer;
   transition: background 0.2s ease;
-  font-size: 0.8rem;
+  font-size: var(--font-size-sm);
   min-width: 32px;
   height: 32px;
   display: flex;
@@ -585,10 +592,10 @@ export default {
 
 .quantity {
   padding: 6px 12px;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   min-width: 30px;
   text-align: center;
-  font-size: 0.9rem;
+  font-size: var(--font-size-base);
   background: white;
   border: none;
   height: 32px;
@@ -605,7 +612,7 @@ export default {
   padding: 4px 8px;
   border-radius: 4px;
   transition: all 0.2s ease;
-  font-size: 0.8rem;
+  font-size: var(--font-size-sm);
   min-width: 32px;
   height: 32px;
   display: flex;
@@ -649,9 +656,9 @@ export default {
 
 /* Item Total */
 .item-total {
-  font-weight: 700;
+  font-weight: var(--font-weight-bold);
   color: #333;
-  font-size: 1rem;
+  font-size: var(--font-size-lg);
   text-align: right;
 }
 
@@ -671,7 +678,7 @@ export default {
   display: flex;
   justify-content: space-between;
   margin-bottom: 8px;
-  font-size: 0.9rem;
+  font-size: var(--font-size-base);
 }
 
 .summary-row:last-child {
@@ -679,15 +686,15 @@ export default {
 }
 
 .total-row {
-  font-size: 1.1rem;
-  font-weight: bold;
+  font-size: var(--font-size-lg);
+  font-weight: var(--font-weight-bold);
   padding-top: 8px;
   border-top: 1px solid #dee2e6;
   color: #333;
 }
 
 .summary-amount {
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
 }
 
 /* Action Buttons */
@@ -703,9 +710,9 @@ export default {
   border-radius: 6px;
   border: none;
   cursor: pointer;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   transition: all 0.3s ease;
-  font-size: 1rem;
+  font-size: var(--font-size-base);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -737,7 +744,7 @@ export default {
   border: 1px solid #dc3545;
   color: #dc3545;
   padding: 8px 16px;
-  font-size: 0.85rem;
+  font-size: var(--font-size-sm);
 }
 
 .clear-btn:hover {

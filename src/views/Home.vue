@@ -119,15 +119,16 @@ export default {
 }
 
 .hero-title {
-  font-size: 3.5rem;
-  font-weight: 700;
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-bold);
   margin-bottom: 1rem;
   color: var(--secondary-color);
   font-family: 'Montserrat', serif;
+  line-height: var(--line-height-tight);
 }
 
 .hero-subtitle {
-  font-size: 1.4rem;
+  font-size: var(--font-size-lg);
   margin-bottom: 1.5rem;
   color: #666;
   font-family: 'Montserrat', serif;
@@ -194,32 +195,33 @@ export default {
 
 .card-title {
   color: var(--secondary-color);
-  font-size: 1.8rem;
-  font-weight: 600;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-semibold);
   margin-bottom: 1rem;
   font-family: 'Montserrat', serif;
+  line-height: var(--line-height-tight);
 }
 
 .card-description {
   color: #666;
   margin-bottom: 1.5rem;
-  line-height: 1.5;
-  font-size: 1.3rem;
+  line-height: var(--line-height-normal);
+  font-size: var(--font-size-base);
   font-family: 'Montserrat', serif;
-  font-weight: 400;
+  font-weight: var(--font-weight-normal);
 }
 
 .btn-primary {
   background-color: var(--primary-color);
   border-color: var(--primary-color);
   padding: 12px 30px;
-  font-weight: 600;
+  font-weight: var(--font-weight-semibold);
   border-radius: 25px;
   transition: all 0.3s ease;
   text-decoration: none;
   display: inline-block;
   font-family: 'Montserrat', serif;
-  font-size: 1.1rem;
+  font-size: var(--font-size-base);
 }
 
 .btn-primary:hover {
@@ -235,11 +237,11 @@ export default {
   }
   
   .hero-title {
-    font-size: 2.5rem;
+    font-size: var(--font-size-3xl);
   }
   
   .hero-subtitle {
-    font-size: 1.1rem;
+    font-size: var(--font-size-base);
     margin-bottom: 1rem;
   }
   
@@ -252,11 +254,11 @@ export default {
   }
   
   .card-title {
-    font-size: 1.8rem;
+    font-size: var(--font-size-lg);
   }
   
   .card-description {
-    font-size: 1.3rem;
+    font-size: var(--font-size-base);
   }
   
   .products-container {
