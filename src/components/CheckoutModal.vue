@@ -1,7 +1,7 @@
 <template>
   <!-- Modal Overlay -->
   <div 
-    v-if="isVisible" 
+    v-if="shouldShowModal" 
     class="checkout-overlay"
     @click.self="closeModal"
   >
@@ -188,11 +188,34 @@ export default {
       progressInterval: null
     }
   },
+  computed: {
+    shouldShowModal() {
+      return this.isVisible && this.cartItems && this.cartItems.length > 0
+    },
+    hasValidItems() {
+      return this.cartItems && this.cartItems.length > 0 && this.totalAmount > 0
+    }
+  },
   watch: {
     isVisible(newVal) {
       if (newVal) {
         this.resetModal()
+        // Agregar listener para tecla Escape
+        document.addEventListener('keydown', this.handleEscKey)
+      } else {
+        // Remover listener cuando se cierre el modal
+        document.removeEventListener('keydown', this.handleEscKey)
       }
+    },
+    cartItems: {
+      handler(newItems) {
+        // Si el carrito se vacía mientras el modal está abierto, cerrarlo
+        if (this.isVisible && (!newItems || newItems.length === 0)) {
+          console.log('Carrito vacío detectado, cerrando modal')
+          this.closeModal()
+        }
+      },
+      immediate: true
     }
   },
   methods: {
@@ -206,11 +229,26 @@ export default {
     
     closeModal() {
       console.log('closeModal ejecutado')
+      // Remover listener de Escape si existe
+      document.removeEventListener('keydown', this.handleEscKey)
       this.$emit('close')
       this.resetModal()
     },
     
+    handleEscKey(event) {
+      if (event.key === 'Escape' && this.isVisible) {
+        this.closeModal()
+      }
+    },
+    
     processPayment() {
+      // Validar que hay productos antes de procesar
+      if (!this.hasValidItems) {
+        console.warn('No se puede procesar el pago: carrito vacío o inválido')
+        this.closeModal()
+        return
+      }
+      
       if (this.selectedPayment === 'whatsapp') {
         this.contactWhatsApp()
         return
@@ -339,6 +377,8 @@ export default {
     if (this.progressInterval) {
       clearInterval(this.progressInterval)
     }
+    // Limpiar listener de Escape
+    document.removeEventListener('keydown', this.handleEscKey)
   }
 }
 </script>

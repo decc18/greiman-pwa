@@ -209,6 +209,12 @@ export default {
     },
     
     proceedToCheckout() {
+      // Validar que hay productos en el carrito antes de mostrar checkout
+      if (cartStore.items.length === 0) {
+        console.warn('No se puede proceder al checkout: carrito vacío')
+        return
+      }
+      
       // Mostrar el modal de checkout directamente
       this.showCheckoutModal = true
       // Ocultar el panel del carrito después de un pequeño delay
@@ -232,7 +238,11 @@ export default {
     },
     
     showCheckoutModal() {
-      // Método obsoleto - removido la implementación anterior
+      // Método obsoleto - validar antes de proceder
+      if (cartStore.items.length === 0) {
+        console.warn('No se puede mostrar checkout: carrito vacío')
+        return
+      }
       this.proceedToCheckout()
     },
     

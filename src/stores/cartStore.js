@@ -90,7 +90,23 @@ export const cartStore = reactive({
     try {
       const stored = localStorage.getItem('greiman-cart')
       if (stored) {
-        this.items = JSON.parse(stored)
+        const parsedItems = JSON.parse(stored)
+        // Validar que los items cargados sean válidos
+        if (Array.isArray(parsedItems)) {
+          // Filtrar items válidos (que tengan id, name, currentPrice)
+          this.items = parsedItems.filter(item => 
+            item && 
+            item.id && 
+            item.name && 
+            typeof item.currentPrice === 'number' && 
+            item.currentPrice > 0 &&
+            typeof item.quantity === 'number' &&
+            item.quantity > 0
+          )
+        } else {
+          console.warn('Datos de carrito inválidos en localStorage')
+          this.items = []
+        }
       }
     } catch (error) {
       console.warn('No se pudo cargar el carrito desde localStorage:', error)
